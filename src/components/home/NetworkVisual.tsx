@@ -1,6 +1,4 @@
-import { motion } from "motion/react";
-
-type Node = { id: string; x: number; y: number; r: number; label?: string };
+type Node = { id: string; x: number; y: number; r: number };
 
 const nodes: Node[] = [
   { id: "core", x: 250, y: 250, r: 13 },
@@ -76,9 +74,8 @@ export function NetworkVisual() {
           </filter>
         </defs>
 
-        {/* orbit rings */}
         {[110, 165, 220].map((r, i) => (
-          <motion.circle
+          <circle
             key={r}
             cx="250"
             cy="250"
@@ -87,19 +84,19 @@ export function NetworkVisual() {
             stroke="url(#bv-line)"
             strokeOpacity={0.22}
             strokeDasharray="2 10"
-            initial={{ rotate: 0 }}
-            animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
-            transition={{ duration: 60 + i * 22, repeat: Infinity, ease: "linear" }}
-            style={{ transformOrigin: "250px 250px" }}
+            style={{
+              transformOrigin: "250px 250px",
+              animation: `orbit-spin ${70 + i * 24}s linear infinite`,
+              animationDirection: i % 2 === 0 ? "normal" : "reverse",
+            }}
           />
         ))}
 
-        {/* edges */}
-        {edges.map(([from, to], i) => {
+        {edges.map(([from, to]) => {
           const a = byId[from]!;
           const b = byId[to]!;
           return (
-            <motion.line
+            <line
               key={`${from}-${to}`}
               x1={a.x}
               y1={a.y}
@@ -107,44 +104,43 @@ export function NetworkVisual() {
               y2={b.y}
               stroke="url(#bv-line)"
               strokeWidth={1.1}
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 1.1, delay: 0.3 + i * 0.05, ease: "easeOut" }}
+              opacity={0.85}
             />
           );
         })}
 
-        {/* data flows */}
         {flows.map(([from, to], i) => {
           const a = byId[from]!;
           const b = byId[to]!;
           return (
-            <motion.circle
-              key={`flow-${from}-${to}`}
-              r={2.6}
-              fill="var(--cyan)"
-              initial={{ cx: a.x, cy: a.y, opacity: 0 }}
-              animate={{ cx: [a.x, b.x], cy: [a.y, b.y], opacity: [0, 1, 1, 0] }}
-              transition={{
-                duration: 2.6,
-                delay: i * 0.55,
-                repeat: Infinity,
-                repeatDelay: 1.4,
-                ease: "easeInOut",
-              }}
-            />
+            <circle key={`flow-${from}-${to}`} r={2.6} fill="var(--cyan)">
+              <animate
+                attributeName="cx"
+                values={`${a.x};${b.x}`}
+                dur="2.8s"
+                begin={`${i * 0.45}s`}
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="cy"
+                values={`${a.y};${b.y}`}
+                dur="2.8s"
+                begin={`${i * 0.45}s`}
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="opacity"
+                values="0;1;1;0"
+                dur="2.8s"
+                begin={`${i * 0.45}s`}
+                repeatCount="indefinite"
+              />
+            </circle>
           );
         })}
 
-        {/* nodes */}
-        {nodes.map((n, i) => (
-          <motion.g
-            key={n.id}
-            initial={{ opacity: 0, scale: 0.4 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transformOrigin: `${n.x}px ${n.y}px` }}
-          >
+        {nodes.map((n) => (
+          <g key={n.id}>
             {n.id === "core" ? (
               <>
                 <circle
@@ -155,16 +151,28 @@ export function NetworkVisual() {
                   opacity={0.35}
                   filter="url(#bv-blur)"
                 />
-                <motion.circle
+                <circle
                   cx={n.x}
                   cy={n.y}
                   r={n.r}
                   fill="none"
                   stroke="var(--cyan)"
                   strokeWidth={1}
-                  animate={{ r: [n.r, n.r * 3.4], opacity: [0.7, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
-                />
+                  opacity={0.55}
+                >
+                  <animate
+                    attributeName="r"
+                    values={`${n.r};${n.r * 3.2};${n.r}`}
+                    dur="3.2s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0.7;0;0.7"
+                    dur="3.2s"
+                    repeatCount="indefinite"
+                  />
+                </circle>
               </>
             ) : null}
             <circle
@@ -178,34 +186,23 @@ export function NetworkVisual() {
             {n.id !== "core" ? (
               <circle cx={n.x} cy={n.y} r={n.r * 0.34} fill="var(--cyan)" opacity={0.85} />
             ) : null}
-          </motion.g>
+          </g>
         ))}
       </svg>
 
-      {/* floating glass chips */}
-      <motion.div
-        className="glass absolute top-[12%] -left-2 rounded-2xl px-4 py-3 sm:left-0"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.9 }}
-      >
-        <p className="font-mono text-[0.6rem] tracking-[0.2em] text-muted-foreground uppercase">
+      <div className="glass absolute top-[12%] -left-2 rounded-2xl px-4 py-3 sm:left-0">
+        <p className="text-muted-foreground font-mono text-[0.6rem] tracking-[0.2em] uppercase">
           Inference
         </p>
         <p className="mt-1 text-sm font-medium">14.2ms latency</p>
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="glass absolute right-0 bottom-[14%] rounded-2xl px-4 py-3"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 1.1 }}
-      >
-        <p className="font-mono text-[0.6rem] tracking-[0.2em] text-muted-foreground uppercase">
+      <div className="glass absolute right-0 bottom-[14%] rounded-2xl px-4 py-3">
+        <p className="text-muted-foreground font-mono text-[0.6rem] tracking-[0.2em] uppercase">
           On-chain
         </p>
         <p className="mt-1 text-sm font-medium">$2.4B RWA settled</p>
-      </motion.div>
+      </div>
     </div>
   );
 }

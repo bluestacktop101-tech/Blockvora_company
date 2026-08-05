@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Activity, BrainCircuit, FileText, Sparkles } from "lucide-react";
 
 const signals = [
@@ -31,10 +30,9 @@ export function HealthcareVisual() {
           </div>
         </div>
         <span className="text-cyan border-border/80 flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[0.65rem]">
-          <motion.span
+          <span
             className="bg-cyan size-1.5 rounded-full"
-            animate={{ opacity: [1, 0.2, 1] }}
-            transition={{ duration: 1.8, repeat: Infinity }}
+            style={{ animation: "pulse-dot 1.8s ease-in-out infinite" }}
           />
           streaming
         </span>
@@ -42,14 +40,14 @@ export function HealthcareVisual() {
 
       <div className="relative mt-8 flex h-32 items-end gap-1.5" aria-hidden="true">
         {bars.map((height, index) => (
-          <motion.span
+          <span
             key={index}
-            className="flex-1 rounded-t-sm opacity-80"
-            style={{ backgroundImage: "var(--gradient-brand)" }}
-            initial={{ height: 6 }}
-            whileInView={{ height: Math.round((height / 100) * 128) }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+            className="origin-bottom flex-1 rounded-t-sm opacity-80"
+            style={{
+              height: Math.round((height / 100) * 128),
+              backgroundImage: "var(--gradient-brand)",
+              animation: `bar-grow 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.04}s both`,
+            }}
           />
         ))}
       </div>

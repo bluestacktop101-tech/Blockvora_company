@@ -1,8 +1,11 @@
+import { lazy, Suspense } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { motion } from "motion/react";
 import { Container } from "@/components/common/Container";
-import { NetworkVisual } from "./NetworkVisual";
+
+const NetworkVisual = lazy(() =>
+  import("./NetworkVisual").then((module) => ({ default: module.NetworkVisual })),
+);
 
 const stats = [
   { value: "12+", label: "Years engineering" },
@@ -27,40 +30,32 @@ export function Hero() {
       <Container className="relative">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
           <div>
-            <motion.span
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="border-border text-muted-foreground inline-flex items-center gap-2 rounded-full border px-4 py-1.5 font-mono text-[0.65rem] tracking-[0.22em] uppercase"
+            <span
+              className="border-border text-muted-foreground animate-hero-in inline-flex items-center gap-2 rounded-full border px-4 py-1.5 font-mono text-[0.65rem] tracking-[0.22em] uppercase"
+              style={{ animationDelay: "0.05s" }}
             >
               <span className="bg-cyan size-1.5 rounded-full" />
               AI · Blockchain · RWA
-            </motion.span>
+            </span>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.85, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-7 text-[2.6rem] leading-[1.04] font-semibold text-balance sm:text-6xl lg:text-[4.2rem]"
+            <h1
+              className="animate-hero-in mt-7 text-[2.6rem] leading-[1.04] font-semibold text-balance sm:text-6xl lg:text-[4.2rem]"
+              style={{ animationDelay: "0.12s" }}
             >
               Building the Future with <span className="text-gradient">AI &amp; Blockchain</span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.24 }}
-              className="text-muted-foreground mt-7 max-w-xl text-base leading-relaxed text-pretty sm:text-lg"
+            <p
+              className="text-muted-foreground animate-hero-in mt-7 max-w-xl text-base leading-relaxed text-pretty sm:text-lg"
+              style={{ animationDelay: "0.2s" }}
             >
               Blockvora engineers intelligent software, blockchain infrastructure, RWA platforms,
               and AI-powered products for the next generation of businesses.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.36 }}
-              className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+            <div
+              className="animate-hero-in mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+              style={{ animationDelay: "0.28s" }}
             >
               <Link
                 to="/contact"
@@ -74,13 +69,11 @@ export function Hero() {
               >
                 Explore Solutions <ArrowUpRight className="size-4" aria-hidden="true" />
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.ul
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-10 flex flex-wrap gap-x-5 gap-y-2"
+            <ul
+              className="animate-hero-in mt-10 flex flex-wrap gap-x-5 gap-y-2"
+              style={{ animationDelay: "0.36s" }}
             >
               {capabilities.map((c) => (
                 <li
@@ -90,13 +83,11 @@ export function Hero() {
                   {c}
                 </li>
               ))}
-            </motion.ul>
+            </ul>
 
-            <motion.dl
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
-              className="border-border mt-10 grid max-w-lg grid-cols-3 gap-6 border-t pt-8"
+            <dl
+              className="border-border animate-hero-in mt-10 grid max-w-lg grid-cols-3 gap-6 border-t pt-8"
+              style={{ animationDelay: "0.42s" }}
             >
               {stats.map((s) => (
                 <div key={s.label}>
@@ -111,19 +102,23 @@ export function Hero() {
                   </dd>
                 </div>
               ))}
-            </motion.dl>
+            </dl>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
-          >
-            <div className="animate-float-slow">
-              <NetworkVisual />
-            </div>
-          </motion.div>
+          <div className="relative min-h-[18rem] sm:min-h-[22rem]">
+            <Suspense
+              fallback={
+                <div
+                  className="bg-card/30 mx-auto aspect-square w-full max-w-[34rem] rounded-full opacity-40"
+                  aria-hidden="true"
+                />
+              }
+            >
+              <div className="animate-float-slow">
+                <NetworkVisual />
+              </div>
+            </Suspense>
+          </div>
         </div>
       </Container>
     </section>
