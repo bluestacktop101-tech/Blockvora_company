@@ -1,80 +1,63 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { homeSlides } from "@/content/slides";
 import { cn } from "@/lib/utils";
 
-const AUTO_MS = 4500;
+const AUTO_MS = 5500;
+const SLIDE_MS = 1.15;
+const EASE = [0.16, 1, 0.3, 1] as const;
 
-/** Horizontal auto-flow slider: people, product, tech, markets, craft. */
+/** Smooth left–right image slider. */
 export function HomeSlider() {
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [direction, setDirection] = useState(1);
   const active = homeSlides[index] ?? homeSlides[0];
+  const count = homeSlides.length;
 
   useEffect(() => {
-    if (reduce || paused || homeSlides.length < 2) {
-      setProgress(0);
-      return;
-    }
+    if (paused || count < 2) return;
 
-    let start = performance.now();
-    let frame = 0;
+    const advanceId = window.setTimeout(() => {
+      setDirection(1);
+      setIndex((value) => (value + 1) % count);
+    }, AUTO_MS);
 
-    const tick = (now: number) => {
-      const elapsed = now - start;
-      setProgress(Math.min(elapsed / AUTO_MS, 1));
-      if (elapsed >= AUTO_MS) {
-        setIndex((value) => (value + 1) % homeSlides.length);
-        start = now;
-        setProgress(0);
-      }
-      frame = requestAnimationFrame(tick);
-    };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [index, paused, reduce]);
+    return () => window.clearTimeout(advanceId);
+  }, [index, paused, count]);
 
   if (!active) return null;
 
   function goTo(nextIndex: number) {
-    setIndex(((nextIndex % homeSlides.length) + homeSlides.length) % homeSlides.length);
-    setProgress(0);
+    const wrapped = ((nextIndex % count) + count) % count;
+    if (wrapped === index) return;
+
+    const forward = (wrapped - index + count) % count;
+    const backward = (index - wrapped + count) % count;
+    setDirection(forward <= backward ? 1 : -1);
+    setIndex(wrapped);
   }
 
   return (
     <section className="px-4 pt-5 sm:px-6 lg:px-8">
-      <div
-        className="border-border relative overflow-hidden rounded-xl border"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocusCapture={() => setPaused(true)}
-        onBlurCapture={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-            setPaused(false);
-          }
-        }}
-      >
+      <div className="border-border relative overflow-hidden rounded-xl border">
         <div className="relative aspect-[16/10] min-h-[18rem] overflow-hidden sm:aspect-[21/9] sm:min-h-[22rem]">
           <motion.div
-            className="flex h-full"
-            style={{ width: `${homeSlides.length * 100}%` }}
-            animate={{ x: `${(-index * 100) / homeSlides.length}%` }}
+            className="absolute inset-y-0 left-0 flex h-full will-change-transform"
+            style={{ width: `${count * 100}%` }}
+            animate={{ x: `${(-index * 100) / count}%` }}
             transition={
-              reduce
-                ? { duration: 0 }
-                : { type: "spring", stiffness: 110, damping: 22, mass: 0.9 }
+              reduce ? { duration: 0 } : { duration: SLIDE_MS, ease: EASE }
             }
           >
             {homeSlides.map((slide) => (
               <div
                 key={slide.id}
                 className="relative h-full shrink-0"
-                style={{ width: `${100 / homeSlides.length}%` }}
+                style={{ width: `${100 / count}%` }}
               >
                 <img
                   src={slide.image}
@@ -88,28 +71,40 @@ export function HomeSlider() {
             ))}
           </motion.div>
 
-          <div className="pointer-events-none absolute inset-0 flex flex-col justify-end p-5 sm:p-8 lg:p-10">
-            <motion.div
-              key={active.id}
-              initial={reduce ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              className="pointer-events-auto max-w-xl"
-            >
-              <p className="text-xs font-medium text-white/70">{active.eyebrow}</p>
-              <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-4xl">
-                {active.title}
-              </h1>
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-white/80 sm:text-base">
-                {active.body}
-              </p>
-              <Link
-                to={active.cta.to}
-                className="mt-5 inline-flex min-h-10 items-center rounded-md bg-white px-4 text-sm font-medium text-black"
+          <div className="pointer-events-none absolute inset-0 z-10 flex flex-col justify-end p-5 sm:p-8 lg:p-10">
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
+              <motion.div
+                key={active.id}
+                custom={direction}
+                initial={
+                  reduce ? false : { opacity: 0, x: direction > 0 ? 24 : -24 }
+                }
+                animate={{ opacity: 1, x: 0 }}
+                exit={
+                  reduce
+                    ? undefined
+                    : { opacity: 0, x: direction > 0 ? -24 : 24 }
+                }
+                transition={
+                  reduce ? { duration: 0 } : { duration: 0.5, ease: EASE }
+                }
+                className="pointer-events-auto max-w-xl"
               >
-                {active.cta.label}
-              </Link>
-            </motion.div>
+                <p className="text-xs font-medium text-white/70">{active.eyebrow}</p>
+                <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-4xl">
+                  {active.title}
+                </h1>
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-white/80 sm:text-base">
+                  {active.body}
+                </p>
+                <Link
+                  to={active.cta.to}
+                  className="mt-5 inline-flex min-h-10 items-center rounded-md bg-white px-4 text-sm font-medium text-black"
+                >
+                  {active.cta.label}
+                </Link>
+              </motion.div>
+            </AnimatePresence>
 
             <div className="pointer-events-auto mt-6 flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
@@ -121,7 +116,7 @@ export function HomeSlider() {
                       aria-label={`Go to slide ${i + 1}`}
                       onClick={() => goTo(i)}
                       className={cn(
-                        "h-1.5 rounded-full transition-all",
+                        "h-1.5 rounded-full transition-all duration-500 ease-out",
                         i === index ? "w-6 bg-white" : "w-1.5 bg-white/40 hover:bg-white/70",
                       )}
                     />
@@ -156,12 +151,6 @@ export function HomeSlider() {
               </div>
             </div>
           </div>
-
-          {!reduce ? (
-            <div className="absolute inset-x-0 bottom-0 h-0.5 bg-white/15">
-              <div className="h-full bg-white" style={{ width: `${progress * 100}%` }} />
-            </div>
-          ) : null}
         </div>
       </div>
     </section>

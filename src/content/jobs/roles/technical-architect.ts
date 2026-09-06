@@ -4,7 +4,7 @@ export default defineJob({
   open: true,
   order: 14,
   slug: "technical-architect",
-  title: "Architect",
+  title: "Technical Architect",
   department: "Engineering",
   team: "Architecture",
   location: "Remote (Global)",
