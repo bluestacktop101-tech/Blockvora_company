@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Twitter } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Section } from "@/components/common/Section";
 import { Reveal } from "@/components/common/Reveal";
@@ -49,7 +49,7 @@ function Page() {
             </p>
             <ul className="mt-8 space-y-5">
               <li className="flex gap-3">
-                <Mail className="text-primary mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                <Mail className="mt-0.5 size-4 shrink-0 opacity-70" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-medium">Email</p>
                   <a
@@ -61,17 +61,52 @@ function Page() {
                 </div>
               </li>
               <li className="flex gap-3">
-                <Phone className="text-primary mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                <MapPin className="mt-0.5 size-4 shrink-0 opacity-70" aria-hidden="true" />
                 <div>
-                  <p className="text-sm font-medium">Phone</p>
-                  <p className="text-muted-foreground text-sm">{siteConfig.phone}</p>
+                  <p className="text-sm font-medium">Location</p>
+                  <p className="text-muted-foreground text-sm">{siteConfig.address}</p>
                 </div>
               </li>
               <li className="flex gap-3">
-                <MapPin className="text-primary mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                <Github className="mt-0.5 size-4 shrink-0 opacity-70" aria-hidden="true" />
                 <div>
-                  <p className="text-sm font-medium">Studio</p>
-                  <p className="text-muted-foreground text-sm">{siteConfig.address}</p>
+                  <p className="text-sm font-medium">GitHub</p>
+                  <a
+                    href={siteConfig.socials.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                  >
+                    github.com/blockvora
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <Linkedin className="mt-0.5 size-4 shrink-0 opacity-70" aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-medium">LinkedIn</p>
+                  <a
+                    href={siteConfig.socials.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                  >
+                    linkedin.com/company/blockvora
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <Twitter className="mt-0.5 size-4 shrink-0 opacity-70" aria-hidden="true" />
+                <div>
+                  <p className="text-sm font-medium">X</p>
+                  <a
+                    href={siteConfig.socials.twitter}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                  >
+                    x.com/blockvora
+                  </a>
                 </div>
               </li>
             </ul>

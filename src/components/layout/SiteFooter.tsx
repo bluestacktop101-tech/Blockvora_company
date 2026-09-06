@@ -1,14 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Github, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Twitter } from "lucide-react";
 import { footerNav, siteConfig } from "@/config/site";
 import { Container } from "@/components/common/Container";
 import { Logo } from "@/components/common/Logo";
 
 const socials = [
-  { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-  { label: "GitHub", href: "https://github.com", icon: Github },
-  { label: "X", href: "https://x.com", icon: Twitter },
-];
+  { label: "LinkedIn", href: siteConfig.socials.linkedin, icon: Linkedin },
+  { label: "GitHub", href: siteConfig.socials.github, icon: Github },
+  { label: "X", href: siteConfig.socials.twitter, icon: Twitter },
+] as const;
 
 export function SiteFooter() {
   return (
@@ -20,13 +20,19 @@ export function SiteFooter() {
             <p className="text-muted-foreground mt-5 max-w-sm text-sm leading-relaxed">
               {siteConfig.description}
             </p>
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="text-foreground hover:text-primary mt-6 inline-flex items-center gap-2 text-sm transition-colors"
-            >
-              <Mail className="size-4" aria-hidden="true" />
-              {siteConfig.email}
-            </a>
+            <div className="mt-6 space-y-2.5">
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="text-foreground hover:text-primary inline-flex items-center gap-2 text-sm transition-colors"
+              >
+                <Mail className="size-4" aria-hidden="true" />
+                {siteConfig.email}
+              </a>
+              <p className="text-muted-foreground inline-flex items-center gap-2 text-sm">
+                <MapPin className="size-4 shrink-0" aria-hidden="true" />
+                {siteConfig.address}
+              </p>
+            </div>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-3">
@@ -84,7 +90,7 @@ export function SiteFooter() {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={s.label}
-                  className="border-border text-muted-foreground hover:text-foreground hover:border-primary/50 grid size-11 place-items-center rounded-xl border transition-colors"
+                  className="border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 grid size-10 place-items-center rounded-md border transition-colors"
                 >
                   <s.icon className="size-4" aria-hidden="true" />
                 </a>

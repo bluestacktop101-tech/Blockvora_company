@@ -1,17 +1,18 @@
-import { BrandMark } from "@/components/common/BrandMark";
 import { cn } from "@/lib/utils";
 
 export function Logo({ className, invert = false }: { className?: string; invert?: boolean }) {
   return (
     <span className={cn("flex items-center gap-2.5", className)}>
-      <span
+      <img
+        src="/logo.png"
+        alt=""
+        width={32}
+        height={32}
         className={cn(
-          "grid size-8 place-items-center rounded-md",
-          invert ? "bg-invert-foreground text-invert" : "bg-foreground text-background",
+          "size-8 rounded-md object-cover",
+          invert ? "ring-1 ring-white/20" : "ring-1 ring-border",
         )}
-      >
-        <BrandMark className="size-4" />
-      </span>
+      />
       <span
         className={cn(
           "text-[0.95rem] font-semibold tracking-tight",

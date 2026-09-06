@@ -4,8 +4,14 @@ export const siteConfig = {
   description:
     "Blockvora is the product network for production AI systems, institutional blockchain, and RWA platforms — live machines, transparent delivery, measurable outcomes.",
   email: "hello@blockvora.com",
-  phone: "+1 (415) 555-0142",
-  address: "One Market Plaza, San Francisco, CA",
+  phone: "+41 58 728 90 23",
+  address: "Zug, Switzerland",
+  logo: "/logo.png",
+  socials: {
+    github: "https://github.com/blockvora",
+    linkedin: "https://www.linkedin.com/company/blockvora",
+    twitter: "https://x.com/blockvora",
+  },
 } as const;
 
 export type NavItem = {

@@ -87,8 +87,8 @@ function Page() {
         <SectionHeading
           align="left"
           eyebrow="Studio"
-          title="Based in San Francisco, building globally"
-          description={`${siteConfig.address}. We work with clients across North America and Europe, with remote-friendly delivery and on-site workshops when the problem demands it.`}
+          title="Based in Zug, building globally"
+          description={`${siteConfig.address}. We work with clients across Europe and North America, with remote-friendly delivery and on-site workshops when the problem demands it.`}
         />
         <dl className="mt-12 grid gap-6 sm:grid-cols-3">
           {[
