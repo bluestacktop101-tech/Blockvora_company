@@ -1,5 +1,5 @@
--- Career applications (Blockvora apply form)
--- Run in Supabase SQL Editor: https://supabase.com/dashboard/project/omdcyfewrmcqflfxopqz/sql
+-- Career applications — column order matches production table
+-- Run in Supabase SQL Editor if the table does not exist yet
 
 create table if not exists public.career_applications (
   id uuid primary key default gen_random_uuid(),
@@ -7,13 +7,13 @@ create table if not exists public.career_applications (
   role text,
   name text not null,
   email text not null,
-  resume_path text,
-  resume_url text,
   linkedin text,
   github text,
+  work_location text not null,
+  resume_path text,
+  resume_url text,
   phone text,
   telegram text,
-  work_location text not null,
   cover_letter text,
   blockchain_project text
 );
@@ -26,7 +26,6 @@ create index if not exists career_applications_email_idx
 
 alter table public.career_applications enable row level security;
 
--- Public apply form can insert; no public read/update/delete
 drop policy if exists "Anyone can submit career applications" on public.career_applications;
 create policy "Anyone can submit career applications"
   on public.career_applications
@@ -34,7 +33,6 @@ create policy "Anyone can submit career applications"
   to anon, authenticated
   with check (true);
 
--- Private resume storage
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values (
   'career-resumes',
@@ -57,6 +55,3 @@ create policy "Anyone can upload career resumes"
   for insert
   to anon, authenticated
   with check (bucket_id = 'career-resumes');
-
--- Resumes stay private. View files in Dashboard → Storage → career-resumes
--- (or with the service role). No public SELECT policy on purpose.

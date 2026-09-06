@@ -25,13 +25,13 @@ export type CareerApplicationInsert = {
   role?: string | null;
   name: string;
   email: string;
-  resume_path?: string | null;
-  resume_url?: string | null;
   linkedin?: string | null;
   github?: string | null;
+  work_location: string;
+  resume_path?: string | null;
+  resume_url?: string | null;
   phone?: string | null;
   telegram?: string | null;
-  work_location: string;
   cover_letter?: string | null;
   blockchain_project?: string | null;
 };
