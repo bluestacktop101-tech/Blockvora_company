@@ -1,0 +1,61 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: true,
+  order: 46,
+  slug: "mobile-developer",
+  title: "Mobile Developer",
+  department: "Engineering",
+  team: "Delivery",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "React Native / Flutter",
+    "TypeScript",
+    "iOS · Android",
+    "REST APIs",
+    "Wallet SDKs",
+  ],
+  successLooksLike: [
+    "Stable, performant mobile releases",
+    "Clean reusable mobile architecture",
+    "Smooth API and blockchain integrations",
+    "High-quality UX across devices",
+  ],
+  hiringProcess: [
+    "Application review",
+    "Technical interview (mobile + architecture)",
+    "Final discussion",
+  ],
+  howToApply: [
+    "Resume or LinkedIn",
+    "GitHub profile (required)",
+    "Examples of mobile apps shipped",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/Mobile-Developer-39903938ce4280a6806dc9a431ef22dc",
+  summary: "Build high-quality iOS and Android apps for blockchain and digital products.",
+  about: "We are hiring a Mobile Developer to build modern, performant mobile applications. You will own mobile UI, API integration, and release quality for products used by operators and end users. This is a hands-on engineering role focused on product quality, performance, and usability.",
+  responsibilities: [
+    "Build and maintain iOS and/or Android applications",
+    "Implement responsive, high-performance mobile UI",
+    "Integrate mobile apps with backend APIs and blockchain services",
+    "Implement wallet and Web3 flows where applicable",
+    "Collaborate with designers to ship accurate UX",
+    "Optimize apps for performance, stability, and store readiness",
+    "Write tests and participate in code reviews",
+  ],
+  requirements: [
+    "3+ years of mobile development experience",
+    "Strong proficiency in React Native, Flutter, Swift, or Kotlin",
+    "Solid understanding of mobile architecture and state management",
+    "Experience with REST APIs and authentication flows",
+    "Familiarity with App Store / Play Store release processes",
+    "Ability to collaborate with backend and design teams",
+  ],
+  niceToHave: [
+    "Experience with Web3 mobile wallets or dApp browsers",
+    "Push notifications, deep linking, and offline-first patterns",
+    "CI/CD for mobile (Fastlane, EAS, Bitrise)",
+    "Basic backend understanding",
+  ],
+});

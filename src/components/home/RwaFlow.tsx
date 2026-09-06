@@ -1,5 +1,5 @@
+import { motion, useReducedMotion } from "motion/react";
 import { Building2, Coins, Link2, ShieldCheck, Store, type LucideIcon } from "lucide-react";
-import { Reveal } from "@/components/common/Reveal";
 
 const stages: { label: string; icon: LucideIcon }[] = [
   { label: "Asset", icon: Building2 },
@@ -9,7 +9,11 @@ const stages: { label: string; icon: LucideIcon }[] = [
   { label: "Marketplace", icon: Store },
 ];
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 export function RwaFlow() {
+  const reduce = useReducedMotion();
+
   return (
     <div className="relative">
       <ol className="relative hidden lg:grid lg:grid-cols-5 lg:gap-0">
@@ -18,7 +22,14 @@ export function RwaFlow() {
           const isLast = index === stages.length - 1;
           return (
             <li key={stage.label} className="relative flex flex-col items-center text-center">
-              <Reveal delay={index * 0.08} className="relative flex w-full flex-col items-center">
+              <motion.div
+                initial={reduce ? false : { opacity: 0, y: 24, scale: 0.92 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.65, delay: index * 0.1, ease }}
+                {...(!reduce ? { whileHover: { y: -6, transition: { duration: 0.25 } } } : {})}
+                className="relative flex w-full flex-col items-center"
+              >
                 <span className="text-primary border-border bg-card relative z-10 flex size-14 items-center justify-center rounded-2xl border shadow-[var(--shadow-elevate)]">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
@@ -28,7 +39,7 @@ export function RwaFlow() {
                 <span className="mt-2 text-sm font-semibold tracking-tight sm:text-base">
                   {stage.label}
                 </span>
-              </Reveal>
+              </motion.div>
 
               {!isLast ? (
                 <div
@@ -39,12 +50,18 @@ export function RwaFlow() {
                   }}
                   aria-hidden="true"
                 >
-                  <span
-                    className="bg-cyan absolute top-1/2 size-1.5 -translate-y-1/2 rounded-full"
-                    style={{
-                      animation: `rwa-travel 2.2s ease-in-out ${index * 0.35}s infinite`,
-                    }}
-                  />
+                  {!reduce ? (
+                    <motion.span
+                      className="bg-cyan absolute top-1/2 size-1.5 -translate-y-1/2 rounded-full shadow-[0_0_12px_var(--cyan)]"
+                      animate={{ left: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: index * 0.3,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ) : null}
                 </div>
               ) : null}
             </li>
@@ -58,29 +75,39 @@ export function RwaFlow() {
           const isLast = index === stages.length - 1;
           return (
             <li key={stage.label} className="relative">
-              <Reveal delay={index * 0.08}>
-                <div className="bg-background/70 border-border/80 relative flex items-center gap-4 rounded-2xl border px-4 py-4">
-                  <span className="text-primary border-border bg-card/70 flex size-10 shrink-0 items-center justify-center rounded-xl border">
-                    <Icon className="size-4" aria-hidden="true" />
-                  </span>
-                  <span className="text-sm font-medium tracking-tight sm:text-base">
-                    {stage.label}
-                  </span>
-                  <span className="text-muted-foreground ml-auto font-mono text-[0.65rem]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-              </Reveal>
+              <motion.div
+                initial={reduce ? false : { opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.55, delay: index * 0.08, ease }}
+                className="bg-background/70 border-border/80 relative flex items-center gap-4 rounded-2xl border px-4 py-4"
+              >
+                <span className="text-primary border-border bg-card/70 flex size-10 shrink-0 items-center justify-center rounded-xl border">
+                  <Icon className="size-4" aria-hidden="true" />
+                </span>
+                <span className="text-sm font-medium tracking-tight sm:text-base">{stage.label}</span>
+                <span className="text-muted-foreground ml-auto font-mono text-[0.65rem]">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </motion.div>
 
               {!isLast ? (
                 <div
                   className="bg-primary/35 relative mx-auto my-1 h-5 w-px overflow-hidden"
                   aria-hidden="true"
                 >
-                  <span
-                    className="bg-cyan absolute inset-x-0 h-2 rounded-full"
-                    style={{ animation: `rwa-fall 1.6s ease-in-out ${index * 0.35}s infinite` }}
-                  />
+                  {!reduce ? (
+                    <motion.span
+                      className="bg-cyan absolute inset-x-0 h-2 rounded-full"
+                      animate={{ y: [-8, 22], opacity: [0, 1, 0] }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: index * 0.3,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ) : null}
                 </div>
               ) : null}
             </li>

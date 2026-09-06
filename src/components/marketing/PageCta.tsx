@@ -1,5 +1,5 @@
+import { Link } from "@tanstack/react-router";
 import { Section } from "@/components/common/Section";
-import { Reveal } from "@/components/common/Reveal";
 import { GradientButton } from "@/components/common/GradientButton";
 
 export function PageCta({
@@ -12,40 +12,40 @@ export function PageCta({
   eyebrow?: string;
   title?: string;
   description?: string;
-  primary?: { label: string; to: string };
+  primary?: { label: string; to: string; search?: Record<string, string> };
   secondary?: { label: string; to: string } | null;
 }) {
   return (
-    <Section tone="dark" className="overflow-hidden">
-      <div
-        className="grid-lines pointer-events-none absolute inset-0 opacity-25"
-        aria-hidden="true"
-      />
-      <div
-        className="glow-orb top-1/2 left-1/2 size-[32rem] -translate-x-1/2 -translate-y-1/2 opacity-50"
-        style={{ background: "var(--gradient-glow)" }}
-        aria-hidden="true"
-      />
-      <Reveal className="relative mx-auto max-w-3xl text-center">
-        <span className="border-border text-muted-foreground inline-flex items-center gap-2 rounded-full border px-4 py-1.5 font-mono text-[0.7rem] tracking-[0.22em] uppercase">
-          <span className="bg-primary size-1.5 rounded-full" />
+    <Section tone="dark">
+      <div className="border-border bg-card mx-auto max-w-3xl rounded-xl border p-8 text-center sm:p-10">
+        <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
           {eyebrow}
-        </span>
-        <h2 className="mt-8 text-3xl leading-[1.05] font-semibold text-balance sm:text-5xl">
+        </p>
+        <h2 className="mt-3 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
           {title}
         </h2>
-        <p className="text-muted-foreground mx-auto mt-5 max-w-xl text-lg leading-relaxed text-pretty">
+        <p className="text-muted-foreground mx-auto mt-3 max-w-xl text-sm leading-relaxed">
           {description}
         </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <GradientButton to={primary.to}>{primary.label}</GradientButton>
+        <div className="mt-7 flex flex-col items-center justify-center gap-2 sm:flex-row">
+          {primary.search ? (
+            <Link
+              to={primary.to}
+              search={primary.search}
+              className="bg-foreground text-background inline-flex min-h-10 items-center justify-center rounded-md px-4 text-sm font-medium"
+            >
+              {primary.label}
+            </Link>
+          ) : (
+            <GradientButton to={primary.to}>{primary.label}</GradientButton>
+          )}
           {secondary ? (
             <GradientButton to={secondary.to} variant="outline">
               {secondary.label}
             </GradientButton>
           ) : null}
         </div>
-      </Reveal>
+      </div>
     </Section>
   );
 }

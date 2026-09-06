@@ -97,18 +97,46 @@ export type BlogPost = {
   relatedPosts: string[];
 };
 
+/** Coarse hiring-board filters (like All / Engineering / Product …). */
+export type JobDepartment =
+  | "Engineering"
+  | "Product"
+  | "Design"
+  | "Data"
+  | "Operations"
+  | "Trust";
+
 export type JobPosting = {
   slug: string;
   title: string;
+  /** Shown in filters and on cards (e.g. Engineering). */
+  department: JobDepartment;
+  /** Internal team / squad name on the detail page. */
   team: string;
   location: string;
   type: string;
+  /** Optional badge under location (e.g. "Senior hire"). */
+  stage?: string;
   summary: string;
   about: string;
   responsibilities: string[];
   requirements: string[];
   niceToHave: string[];
   benefits: string[];
+  /** Optional tools / stack called out on the JD. */
+  techStack?: string[];
+  /** Optional "What success looks like" bullets. */
+  successLooksLike?: string[];
+  /** Optional hiring process steps. */
+  hiringProcess?: string[];
+  /** Optional apply checklist shown on the JD. */
+  howToApply?: string[];
+  /** Optional source Notion JD URL. */
+  sourceUrl?: string;
+  /** When false, hidden from /careers and detail routes. Default true. */
+  open?: boolean;
+  /** Sort order on listing (lower first). Default 100. */
+  order?: number;
 };
 
 export type TechCategory = {

@@ -24,21 +24,18 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <span
+        <p
           className={cn(
-            "inline-flex items-center gap-2 rounded-full border px-4 py-1.5 font-mono text-[0.7rem] tracking-[0.22em] uppercase",
-            light
-              ? "border-invert-foreground/15 text-invert-muted"
-              : "border-border text-muted-foreground",
+            "text-xs font-medium tracking-wide uppercase",
+            light ? "text-invert-muted" : "text-muted-foreground",
           )}
         >
-          <span className="bg-primary size-1.5 rounded-full" />
           {eyebrow}
-        </span>
+        </p>
       ) : null}
       <h2
         className={cn(
-          "mt-6 text-4xl leading-[1.05] font-semibold text-balance sm:text-5xl",
+          "mt-2 text-2xl font-semibold tracking-tight text-balance sm:text-3xl",
           light ? "text-invert-foreground" : "text-foreground",
         )}
       >
@@ -47,7 +44,7 @@ export function SectionHeading({
       {description ? (
         <p
           className={cn(
-            "mt-5 text-lg leading-relaxed text-pretty",
+            "mt-3 text-sm leading-relaxed text-pretty sm:text-base",
             light ? "text-invert-muted" : "text-muted-foreground",
           )}
         >

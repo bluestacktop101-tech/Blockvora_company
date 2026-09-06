@@ -1,0 +1,51 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: false,
+  order: 22,
+  slug: "go-backend-engineer",
+  title: "Go Backend Engineer",
+  department: "Engineering",
+  team: "Platform",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "Go",
+    "PostgreSQL",
+    "Redis",
+    "gRPC / REST",
+    "Docker",
+    "Kubernetes",
+    "AWS / GCP",
+  ],
+  successLooksLike: [
+    "Fast, reliable Go services in production",
+    "Clear service contracts and low latency paths",
+    "Strong test coverage and operational visibility",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/Go-Backend-Engineer-37703938ce4280819afddcf74120da66",
+  summary: "Build high-performance Go services for APIs, workers, and blockchain-adjacent systems.",
+  about: "We are hiring a Go Backend Engineer to build high-performance backend services. You will own services, workers, and data paths that must stay fast and reliable under load. This is a hands-on role focused on concurrency, correctness, and production operations.",
+  responsibilities: [
+    "Design and implement Go microservices and APIs",
+    "Build background workers, queues, and scheduled jobs",
+    "Optimize performance, memory use, and concurrency",
+    "Integrate databases, caches, and external systems",
+    "Improve observability, testing, and deployment pipelines",
+    "Collaborate with product and blockchain engineers",
+  ],
+  requirements: [
+    "3+ years of backend experience with strong Go proficiency",
+    "Experience building production Go services",
+    "Solid SQL and data modeling skills",
+    "Understanding of concurrency patterns and performance tuning",
+    "Experience with REST APIs and service-oriented architectures",
+    "Comfort with Git, testing, and CI/CD",
+  ],
+  niceToHave: [
+    "gRPC, Kafka, or event-driven systems",
+    "Kubernetes and cloud infrastructure",
+    "Blockchain node or indexer experience",
+    "Fintech or high-throughput systems",
+  ],
+});

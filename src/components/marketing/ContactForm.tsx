@@ -1,8 +1,29 @@
 import { useState, type FormEvent } from "react";
 import { siteConfig } from "@/config/site";
 
-export function ContactForm() {
+const interests = [
+  "AI platform",
+  "Blockchain / RWA",
+  "Healthcare AI",
+  "Smart contracts",
+  "Careers",
+  "Other",
+] as const;
+
+export function ContactForm({
+  defaultInterest,
+  defaultRole,
+}: {
+  defaultInterest?: string;
+  defaultRole?: string;
+} = {}) {
   const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const interestValue =
+    defaultInterest && interests.includes(defaultInterest as (typeof interests)[number])
+      ? defaultInterest
+      : defaultRole
+        ? "Careers"
+        : "AI platform";
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -34,6 +55,9 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="glass space-y-5 rounded-3xl p-6 sm:p-8">
+      {defaultRole ? (
+        <input type="hidden" name="role" value={defaultRole} />
+      ) : null}
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Name" name="name" required autoComplete="name" />
         <Field label="Email" name="email" type="email" required autoComplete="email" />
@@ -47,19 +71,16 @@ export function ContactForm() {
           id="interest"
           name="interest"
           className="border-border bg-background/70 focus-visible:ring-ring mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus-visible:ring-2"
-          defaultValue="AI platform"
+          defaultValue={interestValue}
         >
-          <option>AI platform</option>
-          <option>Blockchain / RWA</option>
-          <option>Healthcare AI</option>
-          <option>Smart contracts</option>
-          <option>Careers</option>
-          <option>Other</option>
+          {interests.map((item) => (
+            <option key={item}>{item}</option>
+          ))}
         </select>
       </div>
       <div>
         <label htmlFor="message" className="text-sm font-medium">
-          How can we help?
+          {defaultRole ? "Why this role?" : "How can we help?"}
         </label>
         <textarea
           id="message"
@@ -67,14 +88,23 @@ export function ContactForm() {
           required
           rows={5}
           className="border-border bg-background/70 focus-visible:ring-ring mt-2 w-full resize-y rounded-2xl border px-4 py-3 text-sm outline-none focus-visible:ring-2"
-          placeholder="Share goals, timelines and constraints…"
+          placeholder={
+            defaultRole
+              ? `I'm applying for ${defaultRole}. Here's what I've built and why I'm interested…`
+              : "Share goals, timelines and constraints…"
+          }
+          defaultValue={
+            defaultRole
+              ? `I'm applying for ${defaultRole}.\n\n`
+              : undefined
+          }
         />
       </div>
       <button
         type="submit"
         className="text-primary-foreground bg-[image:var(--gradient-brand)] shadow-[var(--shadow-glow)] inline-flex min-h-11 w-full items-center justify-center rounded-full px-6 text-sm font-medium transition-transform hover:scale-[1.02] sm:w-auto"
       >
-        Send message
+        {defaultRole ? "Submit application" : "Send message"}
       </button>
     </form>
   );

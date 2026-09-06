@@ -11,17 +11,33 @@ const description =
   "Tell us about your AI, blockchain or platform initiative. We'll respond within one business day.";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>): {
+    interest?: string;
+    role?: string;
+  } => {
+    const next: { interest?: string; role?: string } = {};
+    if (typeof search["interest"] === "string") next.interest = search["interest"];
+    if (typeof search["role"] === "string") next.role = search["role"];
+    return next;
+  },
   head: () => pageHead({ title: "Contact", description, path: "/contact" }),
   component: Page,
 });
 
 function Page() {
+  const search = Route.useSearch();
+  const interest = search.interest;
+  const role = search.role;
   return (
     <>
       <PageHeader
         eyebrow="Contact"
-        title="Let's talk about what you're building"
-        description={description}
+        title={role ? `Apply for ${role}` : "Let's talk about what you're building"}
+        description={
+          role
+            ? `Tell us about your background and why you're a fit for ${role}. We'll respond within one business day.`
+            : description
+        }
       />
       <Section tone="dark">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
@@ -60,7 +76,10 @@ function Page() {
               </li>
             </ul>
           </Reveal>
-          <ContactForm />
+          <ContactForm
+            {...(interest ? { defaultInterest: interest } : role ? { defaultInterest: "Careers" } : {})}
+            {...(role ? { defaultRole: role } : {})}
+          />
         </div>
       </Section>
     </>

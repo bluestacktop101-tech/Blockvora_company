@@ -1,0 +1,45 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: true,
+  order: 42,
+  slug: "full-stack-engineer",
+  title: "Full Stack Engineer",
+  department: "Engineering",
+  team: "Delivery",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "React",
+    "Next.js",
+    "Node.js",
+    "TypeScript",
+    "PostgreSQL",
+    "Redis",
+    "Docker",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/Full-Stack-Engineer-35803938ce42806ab052f126c0135258",
+  summary: "Deliver end-to-end product features across React frontends and Node backends.",
+  about: "We are hiring a Full-Stack Engineer to ship product features across frontend and backend. You will own delivery from API design through polished UI, working closely with product and design. This is a hands-on role for engineers who like closing the loop.",
+  responsibilities: [
+    "Build frontend features with React and TypeScript",
+    "Design and implement backend APIs and data models",
+    "Ship features end-to-end with tests and observability",
+    "Collaborate with design on UX quality",
+    "Integrate third-party and blockchain services when needed",
+    "Improve shared components and engineering standards",
+  ],
+  requirements: [
+    "3+ years full-stack engineering experience",
+    "Strong TypeScript across React and Node.js",
+    "Experience with PostgreSQL and API design",
+    "Solid product sense and collaboration skills",
+    "Comfort owning features from design through production",
+  ],
+  niceToHave: [
+    "Next.js experience",
+    "Web3 integrations",
+    "Cloud deployment familiarity",
+    "Design system contributions",
+  ],
+});

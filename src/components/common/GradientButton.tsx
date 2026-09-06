@@ -17,11 +17,10 @@ export function GradientButton({
     <Link
       to={to}
       className={cn(
-        "focus-visible:ring-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium transition-transform duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
-        variant === "solid" &&
-          "text-primary-foreground bg-[image:var(--gradient-brand)] shadow-[var(--shadow-glow)] hover:scale-[1.03]",
+        "focus-visible:ring-ring inline-flex min-h-10 items-center justify-center gap-2 rounded-md px-4 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none",
+        variant === "solid" && "bg-foreground text-background hover:bg-foreground/90",
         variant === "outline" &&
-          "border-border text-foreground hover:bg-secondary border hover:scale-[1.02]",
+          "border-border text-foreground hover:bg-secondary border",
         className,
       )}
     >

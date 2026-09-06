@@ -1,0 +1,45 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: false,
+  order: 42,
+  slug: "frontend-engineer-vue",
+  title: "Frontend Engineer (Vue)",
+  department: "Engineering",
+  team: "Delivery",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "Vue",
+    "Nuxt",
+    "TypeScript",
+    "Vite",
+    "Pinia",
+    "TailwindCSS",
+    "REST / GraphQL",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/Frontend-Engineer-Vue-3c703938ce42807bb0f4cd84f93073aa",
+  summary: "Build polished Vue/Nuxt interfaces for digital and Web3 product surfaces.",
+  about: "We are hiring a Frontend Engineer (Vue) to build modern web applications with Vue and Nuxt. You will own UI quality, performance, and integrations with backend and blockchain services. This is a hands-on role focused on product experience and maintainable frontend architecture.",
+  responsibilities: [
+    "Build and maintain Vue / Nuxt applications",
+    "Implement reusable, accessible UI components",
+    "Integrate APIs and Web3 interactions where needed",
+    "Partner with design on accurate, polished UX",
+    "Optimize performance and frontend reliability",
+    "Participate in reviews and frontend standards",
+  ],
+  requirements: [
+    "3+ years frontend experience with strong Vue proficiency",
+    "Experience with TypeScript and modern Vue tooling",
+    "Solid understanding of responsive design and state management",
+    "Experience consuming REST/GraphQL APIs",
+    "Comfort with Git and component-driven development",
+  ],
+  niceToHave: [
+    "Nuxt experience",
+    "Web3 / wallet UI experience",
+    "Design system work",
+    "React familiarity",
+  ],
+});

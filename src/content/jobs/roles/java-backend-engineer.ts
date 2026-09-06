@@ -1,0 +1,46 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: false,
+  order: 26,
+  slug: "java-backend-engineer",
+  title: "Java Backend Engineer",
+  department: "Engineering",
+  team: "Platform",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "Java",
+    "Spring Boot",
+    "PostgreSQL",
+    "Redis",
+    "REST",
+    "Docker",
+    "AWS / GCP",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/Java-Backend-Engineer-3ce03938ce4280d49d53d15dbc00249a",
+  summary: "Build enterprise-grade Java backend services for digital and RWA platforms.",
+  about: "We are hiring a Java Backend Engineer to design and maintain scalable Java services. You will own APIs, integrations, and data layers for products that need strong reliability and clear operational controls. This is a hands-on engineering role.",
+  responsibilities: [
+    "Build and maintain Java backend services and APIs",
+    "Design data models and persistence layers",
+    "Integrate with internal services and external providers",
+    "Improve reliability, testing, and observability",
+    "Collaborate with frontend, product, and blockchain teams",
+    "Participate in code reviews and architecture discussions",
+  ],
+  requirements: [
+    "3+ years of Java backend development",
+    "Strong Spring Boot / modern Java experience",
+    "Solid SQL and relational database skills",
+    "Experience with REST APIs and service design",
+    "Comfort with testing and CI/CD",
+    "Ability to work across product and engineering partners",
+  ],
+  niceToHave: [
+    "Kafka or event-driven architectures",
+    "Cloud platforms (AWS / GCP)",
+    "Fintech, payments, or enterprise systems",
+    "Blockchain API integrations",
+  ],
+});

@@ -1,0 +1,45 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: true,
+  order: 52,
+  slug: "devops-engineer",
+  title: "DevOps Engineer",
+  department: "Engineering",
+  team: "Infrastructure",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "AWS / GCP",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "GitHub Actions",
+    "Prometheus / Grafana",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/DevOps-Engineer-35f03938ce42801da78ed5a2184a8645",
+  summary: "Own CI/CD, cloud infrastructure, and reliability for production systems.",
+  about: "We are hiring a DevOps Engineer to build and operate cloud infrastructure, CI/CD, and reliability tooling. You will help engineering teams ship safely and keep production systems observable. This is a hands-on infrastructure role.",
+  responsibilities: [
+    "Design and maintain CI/CD pipelines",
+    "Manage cloud infrastructure and environments",
+    "Improve observability, alerting, and incident response",
+    "Harden security baselines and secrets management",
+    "Support containerized deployments and scaling",
+    "Partner with engineers on release and reliability needs",
+  ],
+  requirements: [
+    "3+ years DevOps / platform engineering experience",
+    "Strong experience with AWS or GCP",
+    "Hands-on Docker and Kubernetes experience",
+    "Solid CI/CD knowledge (GitHub Actions or equivalent)",
+    "Scripting proficiency (Bash, Python, or TypeScript)",
+    "Understanding of networking, IAM, and monitoring",
+  ],
+  niceToHave: [
+    "Terraform / IaC expertise",
+    "Blockchain node operations",
+    "Security / compliance experience",
+    "SRE practices and SLO design",
+  ],
+});

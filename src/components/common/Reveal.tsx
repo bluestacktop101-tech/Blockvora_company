@@ -1,12 +1,11 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ElementType,
-  type ReactNode,
-} from "react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
+import type { ElementType, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+
+const variants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0 },
+};
 
 export function Reveal({
   children,
@@ -19,38 +18,22 @@ export function Reveal({
   className?: string;
   as?: "div" | "section" | "li";
 }) {
-  const ref = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
-  const Comp = as as ElementType;
+  const reduceMotion = useReducedMotion();
+  const Comp = motion[as] as ElementType;
 
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "80px 0px -8% 0px", threshold: 0.05 },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+  if (reduceMotion) {
+    const Tag = as;
+    return <Tag className={className}>{children}</Tag>;
+  }
 
   return (
     <Comp
-      ref={ref}
-      className={cn("reveal", visible && "reveal-visible", className)}
-      style={{ "--reveal-delay": `${delay}s` } as CSSProperties}
+      className={cn(className)}
+      variants={variants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-12% 0px" }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </Comp>

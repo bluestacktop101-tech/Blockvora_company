@@ -1,0 +1,45 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: false,
+  order: 30,
+  slug: "blockchain-developer",
+  title: "Blockchain Developer",
+  department: "Engineering",
+  team: "Blockchain",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "Solidity",
+    "Hardhat / Foundry",
+    "Ethereum · L2s",
+    "ethers.js",
+    "Node.js",
+    "PostgreSQL",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/Blockchain-Developer-2f803938ce42802a98b3d1ddc684afc4",
+  summary: "Build smart contracts and on-chain integrations for RWA and digital asset products.",
+  about: "We are hiring a Blockchain Developer to design and implement smart contracts and chain integrations. You will work closely with backend and product teams to ship secure, production-ready on-chain systems. This is a hands-on role focused on correctness, gas efficiency, and operational safety.",
+  responsibilities: [
+    "Design and implement smart contracts",
+    "Integrate on-chain systems with backend and frontend services",
+    "Write tests, deployment scripts, and upgrade paths",
+    "Review contract security and operational risks",
+    "Support indexing, events, and transaction monitoring",
+    "Collaborate on token, custody, and market flows",
+  ],
+  requirements: [
+    "3+ years of software engineering experience",
+    "Strong Solidity or equivalent smart contract experience",
+    "Understanding of EVM fundamentals and common patterns",
+    "Experience with Hardhat / Foundry (or similar)",
+    "Ability to reason about security and edge cases",
+    "Comfort collaborating with backend and product teams",
+  ],
+  niceToHave: [
+    "Audit experience or formal verification exposure",
+    "L2 networks (Polygon, Arbitrum, Optimism)",
+    "ethers.js / web3.js integrations",
+    "RWA, DeFi, or fintech product experience",
+  ],
+});

@@ -1,0 +1,45 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: true,
+  order: 32,
+  slug: "full-stack-blockchain-engineer",
+  title: "Full Stack Blockchain Engineer",
+  department: "Engineering",
+  team: "Blockchain",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "TypeScript",
+    "React",
+    "Node.js",
+    "Solidity / Web3",
+    "PostgreSQL",
+    "ethers.js",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/Full-Stack-Blockchain-Engineer-35303938ce428072b0a0f6ee8443d70b",
+  summary: "Ship end-to-end blockchain products across contracts, APIs, and product UI.",
+  about: "We are hiring a Full-Stack Blockchain Engineer to build product features across smart contracts, backend services, and frontend experiences. You will own slices of delivery from chain interaction to user-facing flow. This is a hands-on role for engineers who move fluidly across the stack.",
+  responsibilities: [
+    "Implement smart contract and Web3 integration features",
+    "Build backend APIs that coordinate on-chain and off-chain state",
+    "Ship frontend flows for wallets, transactions, and dashboards",
+    "Own testing across contract, API, and UI layers",
+    "Collaborate with design and product on complex user journeys",
+    "Improve reliability of indexing and transaction UX",
+  ],
+  requirements: [
+    "3+ years full-stack engineering experience",
+    "Hands-on smart contract or Web3 integration experience",
+    "Strong TypeScript across frontend and backend",
+    "Experience with React and Node.js services",
+    "Understanding of wallet flows and transaction states",
+    "Ability to deliver production features end-to-end",
+  ],
+  niceToHave: [
+    "Solidity or Solana program experience",
+    "Indexer / subgraph experience",
+    "Design system and UX collaboration skills",
+    "RWA or DeFi product background",
+  ],
+});

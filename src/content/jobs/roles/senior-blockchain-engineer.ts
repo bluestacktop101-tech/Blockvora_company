@@ -1,0 +1,45 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: false,
+  order: 32,
+  slug: "senior-blockchain-engineer",
+  title: "Senior Blockchain Engineer",
+  department: "Engineering",
+  team: "Blockchain",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "Solidity",
+    "Foundry / Hardhat",
+    "Ethereum · L2s",
+    "ethers.js",
+    "Node.js",
+    "AWS / GCP",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/Senior-Blockchain-Engineer-35303938ce4281dca41bda4bc918302a",
+  summary: "Lead architecture and delivery of production smart contract systems.",
+  about: "We are hiring a Senior Blockchain Engineer to lead on-chain architecture and delivery. You will own complex contract systems, review quality, and mentor engineers while still shipping code. This is a senior hands-on role with high technical ownership.",
+  responsibilities: [
+    "Lead smart contract architecture and implementation",
+    "Define standards for testing, upgrades, and deployments",
+    "Review protocol designs for security and operability",
+    "Guide integrations with custody, indexing, and backend systems",
+    "Mentor blockchain engineers and raise code quality",
+    "Partner with product on roadmap and technical tradeoffs",
+  ],
+  requirements: [
+    "5+ years engineering experience with deep blockchain delivery",
+    "Expert Solidity and EVM system design",
+    "Proven production smart contract shipments",
+    "Strong security mindset and review discipline",
+    "Experience leading technical decisions across teams",
+    "Excellent communication with product and engineering partners",
+  ],
+  niceToHave: [
+    "Multi-chain / L2 production experience",
+    "Prior audit collaboration",
+    "RWA tokenization or DeFi protocol work",
+    "Rust / Solana exposure",
+  ],
+});

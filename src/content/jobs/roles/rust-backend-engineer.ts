@@ -1,0 +1,51 @@
+import { defineJob } from "../shared";
+
+export default defineJob({
+  open: false,
+  order: 24,
+  slug: "rust-backend-engineer",
+  title: "Rust Backend Engineer",
+  department: "Engineering",
+  team: "Platform",
+  location: "Remote (Global)",
+  type: "Full-time / Part-time",
+  techStack: [
+    "Rust",
+    "Tokio",
+    "PostgreSQL",
+    "Redis",
+    "gRPC / REST",
+    "Docker",
+    "AWS / GCP",
+  ],
+  successLooksLike: [
+    "Correct, high-performance Rust services",
+    "Clear APIs and safe concurrency",
+    "Reliable production operations",
+  ],
+  sourceUrl: "https://rwa-jd.notion.site/Rust-Backend-Engineer-35303938ce428146b629f168bcc26ec3",
+  summary: "Build safe, high-performance Rust services for critical backend and chain-adjacent workloads.",
+  about: "We are hiring a Rust Backend Engineer to build performance-critical backend systems. You will work on services where correctness, memory safety, and throughput matter. This is a hands-on engineering role with strong ownership of architecture and delivery.",
+  responsibilities: [
+    "Design and implement Rust backend services and libraries",
+    "Own performance-sensitive data paths and parsers",
+    "Integrate with databases, queues, and blockchain systems",
+    "Write rigorous tests and maintain high code quality",
+    "Collaborate on APIs consumed by product and chain teams",
+    "Improve tooling, CI, and operational readiness",
+  ],
+  requirements: [
+    "3+ years of systems or backend experience",
+    "Strong proficiency in Rust for production services",
+    "Experience with async Rust (Tokio or similar)",
+    "Solid understanding of networking, concurrency, and data structures",
+    "Comfortable with SQL and service APIs",
+    "Strong debugging and ownership habits",
+  ],
+  niceToHave: [
+    "Solana / blockchain runtime experience",
+    "WASM, cryptography, or parser work",
+    "Distributed systems experience",
+    "Cloud deployment familiarity",
+  ],
+});

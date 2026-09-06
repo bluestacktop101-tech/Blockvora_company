@@ -11,17 +11,24 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as BorrowingRouteImport } from './routes/borrowing'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as LendingRouteImport } from './routes/lending'
+import { Route as MarketplaceRouteImport } from './routes/marketplace'
+import { Route as PlatformsRouteImport } from './routes/platforms'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as TechnologiesRouteImport } from './routes/technologies'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as CareersIndexRouteImport } from './routes/careers.index'
 import { Route as CareersSlugRouteImport } from './routes/careers.$slug'
 import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
@@ -37,9 +44,19 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApplyRoute = ApplyRouteImport.update({
+  id: '/apply',
+  path: '/apply',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BorrowingRoute = BorrowingRouteImport.update({
+  id: '/borrowing',
+  path: '/borrowing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CareersRoute = CareersRouteImport.update({
@@ -60,6 +77,26 @@ const ContactRoute = ContactRouteImport.update({
 const IndustriesRoute = IndustriesRouteImport.update({
   id: '/industries',
   path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LendingRoute = LendingRouteImport.update({
+  id: '/lending',
+  path: '/lending',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceRoute = MarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlatformsRoute = PlatformsRouteImport.update({
+  id: '/platforms',
+  path: '/platforms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -92,6 +129,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const CareersIndexRoute = CareersIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CareersRoute,
+} as any)
 const CareersSlugRoute = CareersSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -116,11 +158,17 @@ const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/apply': typeof ApplyRoute
   '/blog': typeof BlogRouteWithChildren
+  '/borrowing': typeof BorrowingRoute
   '/careers': typeof CareersRouteWithChildren
   '/case-studies': typeof CaseStudiesRouteWithChildren
   '/contact': typeof ContactRoute
   '/industries': typeof IndustriesRouteWithChildren
+  '/leaderboard': typeof LeaderboardRoute
+  '/lending': typeof LendingRoute
+  '/marketplace': typeof MarketplaceRoute
+  '/platforms': typeof PlatformsRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/solutions': typeof SolutionsRouteWithChildren
@@ -131,15 +179,21 @@ export interface FileRoutesByFullPath {
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
+  '/careers/': typeof CareersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/apply': typeof ApplyRoute
   '/blog': typeof BlogRouteWithChildren
-  '/careers': typeof CareersRouteWithChildren
+  '/borrowing': typeof BorrowingRoute
   '/case-studies': typeof CaseStudiesRouteWithChildren
   '/contact': typeof ContactRoute
   '/industries': typeof IndustriesRouteWithChildren
+  '/leaderboard': typeof LeaderboardRoute
+  '/lending': typeof LendingRoute
+  '/marketplace': typeof MarketplaceRoute
+  '/platforms': typeof PlatformsRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/solutions': typeof SolutionsRouteWithChildren
@@ -150,16 +204,23 @@ export interface FileRoutesByTo {
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
+  '/careers': typeof CareersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/apply': typeof ApplyRoute
   '/blog': typeof BlogRouteWithChildren
+  '/borrowing': typeof BorrowingRoute
   '/careers': typeof CareersRouteWithChildren
   '/case-studies': typeof CaseStudiesRouteWithChildren
   '/contact': typeof ContactRoute
   '/industries': typeof IndustriesRouteWithChildren
+  '/leaderboard': typeof LeaderboardRoute
+  '/lending': typeof LendingRoute
+  '/marketplace': typeof MarketplaceRoute
+  '/platforms': typeof PlatformsRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/solutions': typeof SolutionsRouteWithChildren
@@ -170,17 +231,24 @@ export interface FileRoutesById {
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
+  '/careers/': typeof CareersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/apply'
     | '/blog'
+    | '/borrowing'
     | '/careers'
     | '/case-studies'
     | '/contact'
     | '/industries'
+    | '/leaderboard'
+    | '/lending'
+    | '/marketplace'
+    | '/platforms'
     | '/privacy'
     | '/services'
     | '/solutions'
@@ -191,15 +259,21 @@ export interface FileRouteTypes {
     | '/case-studies/$slug'
     | '/industries/$slug'
     | '/solutions/$slug'
+    | '/careers/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/apply'
     | '/blog'
-    | '/careers'
+    | '/borrowing'
     | '/case-studies'
     | '/contact'
     | '/industries'
+    | '/leaderboard'
+    | '/lending'
+    | '/marketplace'
+    | '/platforms'
     | '/privacy'
     | '/services'
     | '/solutions'
@@ -210,15 +284,22 @@ export interface FileRouteTypes {
     | '/case-studies/$slug'
     | '/industries/$slug'
     | '/solutions/$slug'
+    | '/careers'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/apply'
     | '/blog'
+    | '/borrowing'
     | '/careers'
     | '/case-studies'
     | '/contact'
     | '/industries'
+    | '/leaderboard'
+    | '/lending'
+    | '/marketplace'
+    | '/platforms'
     | '/privacy'
     | '/services'
     | '/solutions'
@@ -229,16 +310,23 @@ export interface FileRouteTypes {
     | '/case-studies/$slug'
     | '/industries/$slug'
     | '/solutions/$slug'
+    | '/careers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ApplyRoute: typeof ApplyRoute
   BlogRoute: typeof BlogRouteWithChildren
+  BorrowingRoute: typeof BorrowingRoute
   CareersRoute: typeof CareersRouteWithChildren
   CaseStudiesRoute: typeof CaseStudiesRouteWithChildren
   ContactRoute: typeof ContactRoute
   IndustriesRoute: typeof IndustriesRouteWithChildren
+  LeaderboardRoute: typeof LeaderboardRoute
+  LendingRoute: typeof LendingRoute
+  MarketplaceRoute: typeof MarketplaceRoute
+  PlatformsRoute: typeof PlatformsRoute
   PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
   SolutionsRoute: typeof SolutionsRouteWithChildren
@@ -262,11 +350,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apply': {
+      id: '/apply'
+      path: '/apply'
+      fullPath: '/apply'
+      preLoaderRoute: typeof ApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog': {
       id: '/blog'
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/borrowing': {
+      id: '/borrowing'
+      path: '/borrowing'
+      fullPath: '/borrowing'
+      preLoaderRoute: typeof BorrowingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/careers': {
@@ -295,6 +397,34 @@ declare module '@tanstack/react-router' {
       path: '/industries'
       fullPath: '/industries'
       preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lending': {
+      id: '/lending'
+      path: '/lending'
+      fullPath: '/lending'
+      preLoaderRoute: typeof LendingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace': {
+      id: '/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof MarketplaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platforms': {
+      id: '/platforms'
+      path: '/platforms'
+      fullPath: '/platforms'
+      preLoaderRoute: typeof PlatformsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -339,6 +469,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/careers/': {
+      id: '/careers/'
+      path: '/'
+      fullPath: '/careers/'
+      preLoaderRoute: typeof CareersIndexRouteImport
+      parentRoute: typeof CareersRoute
+    }
     '/careers/$slug': {
       id: '/careers/$slug'
       path: '/$slug'
@@ -382,10 +519,12 @@ const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 interface CareersRouteChildren {
   CareersSlugRoute: typeof CareersSlugRoute
+  CareersIndexRoute: typeof CareersIndexRoute
 }
 
 const CareersRouteChildren: CareersRouteChildren = {
   CareersSlugRoute: CareersSlugRoute,
+  CareersIndexRoute: CareersIndexRoute,
 }
 
 const CareersRouteWithChildren =
@@ -430,11 +569,17 @@ const SolutionsRouteWithChildren = SolutionsRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ApplyRoute: ApplyRoute,
   BlogRoute: BlogRouteWithChildren,
+  BorrowingRoute: BorrowingRoute,
   CareersRoute: CareersRouteWithChildren,
   CaseStudiesRoute: CaseStudiesRouteWithChildren,
   ContactRoute: ContactRoute,
   IndustriesRoute: IndustriesRouteWithChildren,
+  LeaderboardRoute: LeaderboardRoute,
+  LendingRoute: LendingRoute,
+  MarketplaceRoute: MarketplaceRoute,
+  PlatformsRoute: PlatformsRoute,
   PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
   SolutionsRoute: SolutionsRouteWithChildren,
