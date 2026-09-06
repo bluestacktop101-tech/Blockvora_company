@@ -1,15 +1,25 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const url = import.meta.env["VITE_SUPABASE_URL"] as string | undefined;
-const key = import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] as string | undefined;
+const url = (import.meta.env["VITE_SUPABASE_URL"] as string | undefined)?.trim() ?? "";
+const key =
+  (import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] as string | undefined)?.trim() ?? "";
 
-if (!url || !key) {
-  console.warn(
-    "[supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_PUBLISHABLE_KEY — apply form submits will fail.",
-  );
+export const isSupabaseConfigured = Boolean(url && key);
+
+let client: SupabaseClient | null = null;
+
+/** Lazy client — never throws at module load (empty env crashes SSR on Vercel). */
+export function getSupabase(): SupabaseClient {
+  if (!isSupabaseConfigured) {
+    throw new Error(
+      "Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY.",
+    );
+  }
+  if (!client) {
+    client = createClient(url, key);
+  }
+  return client;
 }
-
-export const supabase = createClient(url ?? "", key ?? "");
 
 export type CareerApplicationInsert = {
   role?: string | null;

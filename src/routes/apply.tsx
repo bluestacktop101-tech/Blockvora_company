@@ -16,7 +16,10 @@ export const Route = createFileRoute("/apply")({
     return next;
   },
   head: ({ match }) => {
-    const role = match.search.role;
+    const role =
+      match?.search && typeof match.search === "object" && "role" in match.search
+        ? (match.search as { role?: string }).role
+        : undefined;
     return pageHead({
       title: role ? `Apply · ${role}` : "Apply",
       description,

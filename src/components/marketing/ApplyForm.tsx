@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { siteConfig } from "@/config/site";
-import { CAREER_RESUMES_BUCKET, supabase } from "@/lib/supabase";
+import { CAREER_RESUMES_BUCKET, getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 
 const fieldClass =
@@ -50,6 +50,13 @@ export function ApplyForm({
     }
 
     try {
+      if (!isSupabaseConfigured) {
+        throw new Error(
+          "Applications are temporarily unavailable. Please email hello@blockvora.com with your resume.",
+        );
+      }
+
+      const supabase = getSupabase();
       const safeName = resume.name.replace(/[^\w.\-]+/g, "_");
       const path = `${Date.now()}-${crypto.randomUUID()}-${safeName}`;
 
