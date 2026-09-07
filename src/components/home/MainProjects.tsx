@@ -9,7 +9,7 @@ function ProjectCard({ project }: { project: MainProject }) {
 
   const body = (
     <>
-      <div className="border-border relative aspect-[3/4] overflow-hidden border-b bg-[#0d0d0d]">
+      <div className="border-border relative aspect-[3/4] overflow-hidden border-b bg-muted">
         <img
           src={project.image}
           alt=""
@@ -53,7 +53,7 @@ function ProjectCard({ project }: { project: MainProject }) {
   );
 
   const className =
-    "border-border bg-card hover:border-white/20 flex min-w-[17.5rem] snap-start flex-col overflow-hidden rounded-xl border transition-colors sm:min-w-[19rem]";
+    "border-border bg-card hover:border-foreground/20 flex min-w-[17.5rem] snap-start flex-col overflow-hidden rounded-xl border transition-colors sm:min-w-[19rem]";
 
   if (project.href === "/solutions/$slug" && project.hrefSlug && !disabled) {
     return (

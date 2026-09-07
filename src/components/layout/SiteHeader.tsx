@@ -41,10 +41,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500",
-        scrolled || open
-          ? "border-border bg-background/80 border-b backdrop-blur-xl"
-          : "border-b border-transparent",
+        "fixed inset-x-0 top-0 z-50 border-b transition-colors",
+        scrolled || open ? "border-border bg-background" : "border-transparent bg-background/0",
       )}
     >
       <nav
@@ -80,7 +78,7 @@ export function SiteHeader() {
         <div className="hidden lg:flex">
           <Link
             to="/contact"
-            className="text-primary-foreground inline-flex min-h-11 items-center gap-2 rounded-full bg-[image:var(--gradient-brand)] px-5 text-sm font-medium shadow-[var(--shadow-glow)] transition-transform duration-300 hover:scale-[1.04]"
+            className="bg-foreground text-background hover:bg-foreground/90 inline-flex min-h-10 items-center gap-2 rounded-md px-4 text-sm font-medium"
           >
             Start a Project <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
@@ -105,7 +103,7 @@ export function SiteHeader() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-border bg-background/95 max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t backdrop-blur-xl lg:hidden"
+          className="border-border bg-background max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t lg:hidden"
         >
           <ul className="mx-auto grid max-w-7xl gap-1 px-5 py-4 sm:px-8">
             {mainNav.map((item) => {
@@ -130,7 +128,7 @@ export function SiteHeader() {
             <li className="pt-2">
               <Link
                 to="/contact"
-                className="text-primary-foreground flex min-h-12 items-center justify-center gap-2 rounded-full bg-[image:var(--gradient-brand)] px-5 text-sm font-medium shadow-[var(--shadow-glow)]"
+                className="bg-foreground text-background flex min-h-11 items-center justify-center gap-2 rounded-md px-4 text-sm font-medium"
               >
                 Start a Project <ArrowRight className="size-4" aria-hidden="true" />
               </Link>

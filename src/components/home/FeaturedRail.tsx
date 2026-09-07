@@ -71,14 +71,14 @@ export function FeaturedRail() {
             </AnimatePresence>
           </div>
 
-          <div className="relative min-h-[22rem] bg-[#0d0d0d] sm:min-h-[26rem]">
+          <div className="relative min-h-[22rem] bg-muted sm:min-h-[26rem]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`pack-${active.slug}`}
                 initial={reduce ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 {...(!reduce ? { exit: { opacity: 0 } } : {})}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 className="absolute inset-0"
               >
                 <img
@@ -86,8 +86,8 @@ export function FeaturedRail() {
                   alt=""
                   className="absolute inset-0 size-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <div className="border-border bg-background/90 absolute right-4 bottom-4 rounded-md border px-3 py-2 text-sm backdrop-blur-sm">
+                <div className="absolute inset-0 bg-black/25" />
+                <div className="border-border bg-card absolute right-4 bottom-4 rounded-md border px-3 py-2 text-sm">
                   <p className="text-muted-foreground text-[0.65rem]">Top prize</p>
                   <p className="font-semibold">{active.topSignal}</p>
                 </div>
@@ -100,7 +100,7 @@ export function FeaturedRail() {
                         key={item.slug}
                         type="button"
                         onClick={() => setIndex(list.findIndex((p) => p.slug === item.slug))}
-                        className="border-border size-12 overflow-hidden rounded-md border shadow-lg"
+                        className="border-border size-12 overflow-hidden rounded-md border"
                         aria-label={`Show ${item.name}`}
                       >
                         <img src={item.image} alt="" className="size-full object-cover" />

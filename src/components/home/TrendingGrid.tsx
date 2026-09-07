@@ -44,7 +44,7 @@ export function TrendingGrid() {
               <Link
                 to="/case-studies/$slug"
                 params={{ slug: card.slug }}
-                className="border-border bg-card hover:border-white/20 group flex h-full flex-col overflow-hidden rounded-xl border transition-colors"
+                className="border-border bg-card hover:border-foreground/20 group flex h-full flex-col overflow-hidden rounded-xl border transition-colors"
               >
                 <CardBody card={card} />
               </Link>
@@ -52,7 +52,7 @@ export function TrendingGrid() {
               <Link
                 to="/solutions/$slug"
                 params={{ slug: card.slug }}
-                className="border-border bg-card hover:border-white/20 group flex h-full flex-col overflow-hidden rounded-xl border transition-colors"
+                className="border-border bg-card hover:border-foreground/20 group flex h-full flex-col overflow-hidden rounded-xl border transition-colors"
               >
                 <CardBody card={card} />
               </Link>
@@ -78,27 +78,28 @@ function CardBody({
 }) {
   return (
     <>
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#0d0d0d]">
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         <img
           src={card.image}
           alt=""
-          className="absolute inset-0 size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          className="absolute inset-0 size-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 p-4">
+      </div>
+      <div className="flex flex-1 flex-col gap-3 p-4">
+        <div>
           <p className="text-muted-foreground text-xs">{card.meta}</p>
           <p className="mt-1 line-clamp-2 text-base font-semibold leading-snug">{card.title}</p>
         </div>
-      </div>
-      <div className="flex items-end justify-between gap-3 p-4">
-        <div>
-          <p className="text-sm font-medium">{card.price}</p>
-          <p className="text-muted-foreground text-xs">FMV {card.fmv}</p>
+        <div className="mt-auto flex items-end justify-between gap-3">
+          <div>
+            <p className="text-sm font-medium">{card.price}</p>
+            <p className="text-muted-foreground text-xs">FMV {card.fmv}</p>
+          </div>
+          <span className="text-muted-foreground group-hover:text-foreground text-xs">
+            {card.status}
+          </span>
         </div>
-        <span className="text-muted-foreground group-hover:text-foreground text-xs">
-          {card.status}
-        </span>
       </div>
     </>
   );

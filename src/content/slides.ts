@@ -18,12 +18,12 @@ export type HomeSlide = {
   };
 };
 
-/** Mixed auto-flow slides: people, product, tech, markets, craft. */
+/** Documentary photography slides — real offices/workspaces, not AI renders. */
 export const homeSlides: HomeSlide[] = [
   {
     id: "people-team",
     category: "People",
-    image: "/slides/slide-team-eng.jpg",
+    image: "/slides/slide-team-eng-photo.jpg",
     eyebrow: "People",
     title: "Built by operators who ship",
     body: "Senior engineers, product leads, and domain partners building production AI and RWA systems together.",
@@ -32,7 +32,7 @@ export const homeSlides: HomeSlide[] = [
   {
     id: "product-platforms",
     category: "Product",
-    image: "/slides/slide-product.jpg",
+    image: "/slides/slide-product-photo.jpg",
     eyebrow: "Product",
     title: "Live machines on the network",
     body: "ATLAS, CLINIC, LEDGER, and NOVA — product surfaces you can open, fund, and operate.",
@@ -41,7 +41,7 @@ export const homeSlides: HomeSlide[] = [
   {
     id: "tech-infra",
     category: "Tech",
-    image: "/slides/slide-tech.jpg",
+    image: "/slides/slide-tech-photo.jpg",
     eyebrow: "Tech",
     title: "Infrastructure that clears review",
     body: "Private AI serving, ledger rails, custody coordination, and observability built for regulated load.",
@@ -50,7 +50,7 @@ export const homeSlides: HomeSlide[] = [
   {
     id: "people-leader",
     category: "People",
-    image: "/slides/slide-leader.jpg",
+    image: "/slides/slide-leader-photo.jpg",
     eyebrow: "People",
     title: "Leadership close to the work",
     body: "Leads who still own architecture, risk language, and delivery outcomes — not slide theater.",
@@ -59,7 +59,7 @@ export const homeSlides: HomeSlide[] = [
   {
     id: "product-rwa",
     category: "Product",
-    image: "/slides/slide-rwa-product.jpg",
+    image: "/slides/slide-rwa-product-photo.jpg",
     eyebrow: "Product",
     title: "RWA product you can operate",
     body: "Issuance, secondary markets, and credit rails with custody-aware controls from day one.",
@@ -68,7 +68,7 @@ export const homeSlides: HomeSlide[] = [
   {
     id: "markets",
     category: "Markets",
-    image: "/slides/slide-markets.jpg",
+    image: "/slides/slide-product-photo.jpg",
     eyebrow: "Markets",
     title: "Lending & borrowing rails",
     body: "Transparent APY, LTV, and settlement visibility for tokenized collateral programs.",
@@ -77,7 +77,7 @@ export const homeSlides: HomeSlide[] = [
   {
     id: "craft-code",
     category: "Craft",
-    image: "/slides/slide-code.jpg",
+    image: "/slides/slide-code-photo.jpg",
     eyebrow: "Craft",
     title: "Still on the critical path",
     body: "Hands-on engineering across AI, contracts, and product — measured by systems that ship.",
@@ -86,7 +86,7 @@ export const homeSlides: HomeSlide[] = [
   {
     id: "people-partners",
     category: "People",
-    image: "/slides/slide-partners.jpg",
+    image: "/slides/slide-partners-photo.jpg",
     eyebrow: "People",
     title: "Partners who stay for day two",
     body: "Client and partner teams collaborating on systems that have to work under regulation and load.",
@@ -95,7 +95,7 @@ export const homeSlides: HomeSlide[] = [
   {
     id: "people-builder",
     category: "People",
-    image: "/slides/slide-builder.jpg",
+    image: "/slides/slide-builder-photo.jpg",
     eyebrow: "People",
     title: "Builders, not spectators",
     body: "Everyone ships — design docs, reviews, demos, and the code on the critical path.",

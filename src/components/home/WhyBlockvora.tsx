@@ -47,31 +47,25 @@ const reasons: { title: string; description: string; icon: LucideIcon }[] = [
 
 export function WhyBlockvora() {
   return (
-    <Section id="why-blockvora" tone="dark" className="overflow-hidden">
-      <div
-        className="glow-orb top-1/3 -left-24 size-[26rem] opacity-35"
-        style={{ background: "var(--gradient-glow)" }}
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-3xl text-center">
+    <Section id="why-blockvora" tone="dark">
+      <div className="mx-auto max-w-3xl text-center">
         <SectionHeading
           align="center"
           eyebrow="Why Blockvora"
-          title="Built for the Hard Problems"
+          title="Built for the hard problems"
           description="Deep technical fluency paired with the rigor enterprises expect — so ambitious products actually ship."
         />
       </div>
 
-      <ul className="relative mt-14 grid gap-x-10 gap-y-0 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-12 grid gap-x-10 gap-y-0 sm:grid-cols-2 lg:grid-cols-3">
         {reasons.map((reason, index) => {
           const Icon = reason.icon;
           return (
-            <Reveal as="li" key={reason.title} delay={index * 0.05}>
-              <article className="border-border/60 h-full border-t py-8">
-                <Icon className="text-primary size-5" aria-hidden="true" strokeWidth={1.75} />
-                <h3 className="mt-5 text-lg font-semibold tracking-tight">{reason.title}</h3>
-                <p className="text-muted-foreground mt-2.5 text-sm leading-relaxed">
+            <Reveal as="li" key={reason.title} delay={index * 0.03}>
+              <article className="border-border h-full border-t py-7">
+                <Icon className="text-foreground size-5" aria-hidden="true" strokeWidth={1.75} />
+                <h3 className="mt-4 text-lg font-semibold tracking-tight">{reason.title}</h3>
+                <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
                   {reason.description}
                 </p>
               </article>

@@ -50,7 +50,7 @@ function Page() {
                 <Link
                   to="/case-studies/$slug"
                   params={{ slug: item.slug }}
-                  className="border-border bg-card hover:border-white/20 group flex h-full flex-col overflow-hidden rounded-xl border transition-colors"
+                  className="border-border bg-card hover:border-foreground/20 group flex h-full flex-col overflow-hidden rounded-xl border transition-colors"
                 >
                   <ListingBody item={item} />
                 </Link>
@@ -58,7 +58,7 @@ function Page() {
                 <Link
                   to="/solutions/$slug"
                   params={{ slug: item.slug }}
-                  className="border-border bg-card hover:border-white/20 group flex h-full flex-col overflow-hidden rounded-xl border transition-colors"
+                  className="border-border bg-card hover:border-foreground/20 group flex h-full flex-col overflow-hidden rounded-xl border transition-colors"
                 >
                   <ListingBody item={item} />
                 </Link>
@@ -85,32 +85,33 @@ function ListingBody({
 }) {
   return (
     <>
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#0d0d0d]">
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         <img
           src={item.image}
           alt=""
-          className="absolute inset-0 size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          className="absolute inset-0 size-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 p-4">
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-muted-foreground text-xs">{item.meta}</span>
-            <span className="border-border bg-background/70 rounded border px-2 py-0.5 text-[0.65rem] backdrop-blur-sm">
-              {item.type}
-            </span>
-          </div>
-          <p className="mt-2 line-clamp-2 text-lg font-semibold tracking-tight">{item.title}</p>
-        </div>
       </div>
-      <div className="flex items-end justify-between gap-3 p-4">
-        <div>
-          <p className="text-sm font-medium">{item.value}</p>
-          <p className="text-muted-foreground text-xs">{item.valueLabel}</p>
+      <div className="flex flex-1 flex-col gap-3 p-4">
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <p className="text-muted-foreground text-xs">{item.meta}</p>
+            <p className="mt-1 line-clamp-2 text-lg font-semibold tracking-tight">{item.title}</p>
+          </div>
+          <span className="border-border text-muted-foreground shrink-0 rounded border px-2 py-0.5 text-[0.65rem]">
+            {item.type}
+          </span>
         </div>
-        <span className="text-muted-foreground group-hover:text-foreground inline-flex items-center gap-1 text-xs">
-          Open <ArrowUpRight className="size-3.5" />
-        </span>
+        <div className="mt-auto flex items-end justify-between gap-3">
+          <div>
+            <p className="text-sm font-medium">{item.value}</p>
+            <p className="text-muted-foreground text-xs">{item.valueLabel}</p>
+          </div>
+          <span className="text-muted-foreground group-hover:text-foreground inline-flex items-center gap-1 text-xs">
+            Open <ArrowUpRight className="size-3.5" />
+          </span>
+        </div>
       </div>
     </>
   );

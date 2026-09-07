@@ -1,4 +1,3 @@
-import { motion, useReducedMotion } from "motion/react";
 import { Building2, Coins, Link2, ShieldCheck, Store, type LucideIcon } from "lucide-react";
 
 const stages: { label: string; icon: LucideIcon }[] = [
@@ -9,107 +8,47 @@ const stages: { label: string; icon: LucideIcon }[] = [
   { label: "Marketplace", icon: Store },
 ];
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
 export function RwaFlow() {
-  const reduce = useReducedMotion();
-
   return (
     <div className="relative">
-      <ol className="relative hidden lg:grid lg:grid-cols-5 lg:gap-0">
+      <ol className="relative hidden lg:grid lg:grid-cols-5">
         {stages.map((stage, index) => {
           const Icon = stage.icon;
           const isLast = index === stages.length - 1;
           return (
             <li key={stage.label} className="relative flex flex-col items-center text-center">
-              <motion.div
-                initial={reduce ? false : { opacity: 0, y: 24, scale: 0.92 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.65, delay: index * 0.1, ease }}
-                {...(!reduce ? { whileHover: { y: -6, transition: { duration: 0.25 } } } : {})}
-                className="relative flex w-full flex-col items-center"
-              >
-                <span className="text-primary border-border bg-card relative z-10 flex size-14 items-center justify-center rounded-2xl border shadow-[var(--shadow-elevate)]">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
-                <span className="text-muted-foreground mt-4 font-mono text-[0.65rem] tracking-[0.2em]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="mt-2 text-sm font-semibold tracking-tight sm:text-base">
-                  {stage.label}
-                </span>
-              </motion.div>
-
+              <span className="border-border bg-background text-foreground relative z-10 flex size-12 items-center justify-center rounded-md border">
+                <Icon className="size-5" aria-hidden="true" />
+              </span>
+              <span className="text-muted-foreground mt-3 font-mono text-[0.65rem] tracking-[0.16em]">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="mt-1.5 text-sm font-semibold tracking-tight">{stage.label}</span>
               {!isLast ? (
                 <div
-                  className="absolute top-7 left-[calc(50%+1.75rem)] right-[calc(-50%+1.75rem)] h-px overflow-hidden"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, color-mix(in oklab, var(--primary) 55%, transparent), color-mix(in oklab, var(--cyan) 45%, transparent))",
-                  }}
+                  className="bg-border absolute top-6 left-[calc(50%+1.5rem)] right-[calc(-50%+1.5rem)] h-px"
                   aria-hidden="true"
-                >
-                  {!reduce ? (
-                    <motion.span
-                      className="bg-cyan absolute top-1/2 size-1.5 -translate-y-1/2 rounded-full shadow-[0_0_12px_var(--cyan)]"
-                      animate={{ left: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: index * 0.3,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  ) : null}
-                </div>
+                />
               ) : null}
             </li>
           );
         })}
       </ol>
 
-      <ol className="relative space-y-3 lg:hidden">
+      <ol className="relative space-y-2 lg:hidden">
         {stages.map((stage, index) => {
           const Icon = stage.icon;
-          const isLast = index === stages.length - 1;
           return (
-            <li key={stage.label} className="relative">
-              <motion.div
-                initial={reduce ? false : { opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.55, delay: index * 0.08, ease }}
-                className="bg-background/70 border-border/80 relative flex items-center gap-4 rounded-2xl border px-4 py-4"
-              >
-                <span className="text-primary border-border bg-card/70 flex size-10 shrink-0 items-center justify-center rounded-xl border">
+            <li key={stage.label}>
+              <div className="border-border bg-background flex items-center gap-3 rounded-md border px-3 py-3">
+                <span className="border-border flex size-9 shrink-0 items-center justify-center rounded-md border">
                   <Icon className="size-4" aria-hidden="true" />
                 </span>
-                <span className="text-sm font-medium tracking-tight sm:text-base">{stage.label}</span>
+                <span className="text-sm font-medium tracking-tight">{stage.label}</span>
                 <span className="text-muted-foreground ml-auto font-mono text-[0.65rem]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-              </motion.div>
-
-              {!isLast ? (
-                <div
-                  className="bg-primary/35 relative mx-auto my-1 h-5 w-px overflow-hidden"
-                  aria-hidden="true"
-                >
-                  {!reduce ? (
-                    <motion.span
-                      className="bg-cyan absolute inset-x-0 h-2 rounded-full"
-                      animate={{ y: [-8, 22], opacity: [0, 1, 0] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        delay: index * 0.3,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  ) : null}
-                </div>
-              ) : null}
+              </div>
             </li>
           );
         })}

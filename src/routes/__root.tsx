@@ -31,13 +31,13 @@ function NotFoundComponent() {
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
             to="/"
-            className="text-primary-foreground inline-flex min-h-11 items-center justify-center rounded-full bg-[image:var(--gradient-brand)] px-6 text-sm font-medium shadow-[var(--shadow-glow)]"
+            className="bg-foreground text-background inline-flex min-h-10 items-center justify-center rounded-md px-5 text-sm font-medium"
           >
             Go home
           </Link>
           <Link
             to="/contact"
-            className="border-border text-foreground inline-flex min-h-11 items-center justify-center rounded-full border px-6 text-sm font-medium"
+            className="border-border text-foreground inline-flex min-h-10 items-center justify-center rounded-md border px-5 text-sm font-medium"
           >
             Contact us
           </Link>

@@ -36,7 +36,7 @@ function Page() {
         <div className="mt-12 px-0">
           <Link
             to="/marketplace"
-            className="text-primary-foreground bg-[image:var(--gradient-brand)] inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-sm font-medium"
+            className="bg-foreground text-background hover:bg-foreground/90 inline-flex min-h-10 items-center gap-2 rounded-md px-4 text-sm font-medium"
           >
             Browse marketplace <ArrowRight className="size-4" />
           </Link>

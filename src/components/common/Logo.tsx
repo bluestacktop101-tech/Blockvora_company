@@ -10,7 +10,7 @@ export function Logo({ className, invert = false }: { className?: string; invert
         height={32}
         className={cn(
           "size-8 rounded-md object-cover",
-          invert ? "ring-1 ring-white/20" : "ring-1 ring-border",
+          invert ? "ring-1 ring-invert-foreground/25" : "ring-1 ring-border",
         )}
       />
       <span

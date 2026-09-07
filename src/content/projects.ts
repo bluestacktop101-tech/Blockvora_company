@@ -48,7 +48,7 @@ export const mainProjects: MainProject[] = [
     href: "/solutions/$slug",
     hrefSlug: "ai-development",
     accent: "gold",
-    image: "/projects/atlas-28.jpg",
+    image: "/projects/atlas-28-ai.jpg",
   },
   {
     slug: "atlas-48",
@@ -74,7 +74,7 @@ export const mainProjects: MainProject[] = [
     href: "/solutions/$slug",
     hrefSlug: "ai-agents",
     accent: "cyan",
-    image: "/projects/atlas-48.jpg",
+    image: "/projects/atlas-48-agents.jpg",
   },
   {
     slug: "clinic-88",
@@ -100,7 +100,7 @@ export const mainProjects: MainProject[] = [
     href: "/solutions/$slug",
     hrefSlug: "healthcare-ai",
     accent: "mint",
-    image: "/projects/clinic-88.jpg",
+    image: "/projects/clinic-88-health.jpg",
   },
   {
     slug: "ledger-248",
@@ -126,7 +126,7 @@ export const mainProjects: MainProject[] = [
     href: "/solutions/$slug",
     hrefSlug: "blockchain",
     accent: "violet",
-    image: "/projects/ledger-248.jpg",
+    image: "/projects/ledger-248-chain.jpg",
   },
   {
     slug: "nova-eden",
@@ -152,7 +152,7 @@ export const mainProjects: MainProject[] = [
     href: "/solutions/$slug",
     hrefSlug: "rwa-tokenization",
     accent: "ember",
-    image: "/projects/nova-eden.jpg",
+    image: "/projects/nova-eden-rwa.jpg",
   },
 ];
 

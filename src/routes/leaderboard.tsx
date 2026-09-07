@@ -158,7 +158,7 @@ function RowBody({
       <span
         className={cn(
           "hidden text-right text-sm tabular-nums sm:block",
-          up ? "text-emerald-400" : "text-red-400",
+          up ? "text-emerald-700" : "text-red-700",
         )}
       >
         {row.change}

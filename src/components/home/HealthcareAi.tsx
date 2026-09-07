@@ -68,7 +68,7 @@ export function HealthcareAi() {
                 <Reveal as="li" key={item.title} delay={index * 0.05}>
                   <div className="group flex gap-4 border-b border-border/60 py-5 first:border-t">
                     <Icon
-                      className="text-cyan mt-0.5 size-4 shrink-0 transition-transform duration-500 group-hover:scale-110"
+                      className="text-foreground mt-0.5 size-4 shrink-0"
                       aria-hidden="true"
                     />
                     <div className="min-w-0">

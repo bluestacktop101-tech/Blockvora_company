@@ -66,63 +66,53 @@ const solutions: Solution[] = [
 
 export function Solutions() {
   return (
-    <Section id="solutions" tone="dark" className="overflow-hidden">
-      <div
-        className="glow-orb -top-20 left-1/3 size-[32rem]"
-        style={{ background: "var(--gradient-glow)" }}
-        aria-hidden="true"
-      />
-
-      <div className="relative grid gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] lg:gap-20">
+    <Section id="solutions" tone="dark">
+      <div className="relative grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
             align="left"
             eyebrow="Solutions"
-            title="Technology That Solves Real Problems"
-            description="Applied AI, distributed ledgers and disciplined engineering — systems that ship to production and stay there."
+            title="Technology that solves real problems"
+            description="Applied AI, distributed ledgers and disciplined engineering — systems that ship and stay operable."
           />
-          <Reveal delay={0.12} className="mt-8">
+          <Reveal delay={0.05} className="mt-6">
             <Link
               to="/solutions"
               className="text-foreground group inline-flex items-center gap-2 text-sm font-medium"
             >
               Explore all solutions
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="size-4" />
             </Link>
           </Reveal>
         </div>
 
-        <ol className="relative border-t border-border/70">
+        <ol className="relative border-t border-border">
           {solutions.map((solution, index) => {
             const Icon = solution.icon;
             return (
-              <Reveal as="li" key={solution.title} delay={index * 0.05}>
+              <Reveal as="li" key={solution.title} delay={index * 0.03}>
                 <Link
                   to="/solutions/$slug"
                   params={{ slug: solution.slug }}
-                  className="group border-border/70 grid gap-4 border-b py-7 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:gap-8 sm:py-8"
+                  className="group border-border grid gap-4 border-b py-6 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:gap-6"
                 >
-                  <span className="text-muted-foreground font-mono text-[0.7rem] tracking-[0.2em]">
+                  <span className="text-muted-foreground font-mono text-[0.7rem] tracking-[0.16em]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div className="flex items-start gap-4 sm:items-center">
-                    <span className="border-border bg-card/50 text-primary flex size-11 shrink-0 items-center justify-center rounded-xl border transition-colors duration-500 group-hover:border-[color-mix(in_oklab,var(--primary)_45%,transparent)]">
+                    <span className="border-border bg-card text-foreground flex size-10 shrink-0 items-center justify-center rounded-md border">
                       <Icon className="size-4" aria-hidden="true" />
                     </span>
                     <div>
-                      <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                      <h3 className="text-lg font-semibold tracking-tight sm:text-xl">
                         {solution.title}
                       </h3>
-                      <p className="text-muted-foreground mt-2 max-w-md text-sm leading-relaxed sm:text-[0.95rem]">
+                      <p className="text-muted-foreground mt-1.5 max-w-md text-sm leading-relaxed">
                         {solution.description}
                       </p>
                     </div>
                   </div>
-                  <span
-                    className="hidden h-px w-12 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100 sm:block"
-                    style={{ backgroundImage: "var(--gradient-brand)" }}
-                    aria-hidden="true"
-                  />
+                  <ArrowUpRight className="text-muted-foreground group-hover:text-foreground hidden size-4 sm:block" />
                 </Link>
               </Reveal>
             );
