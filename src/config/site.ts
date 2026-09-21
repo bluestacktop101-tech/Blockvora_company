@@ -1,11 +1,15 @@
 export const siteConfig = {
   name: "Blockvora",
-  tagline: "Building the delivery network for enterprise AI & real-world assets",
+  tagline: "Intelligent, decentralized technology for complex systems",
+  vision:
+    "To build the next generation of intelligent, decentralized technology that makes complex systems more accessible, transparent, and connected.",
   description:
-    "Blockvora is the product network for production AI systems, institutional blockchain, and RWA platforms — live machines, transparent delivery, measurable outcomes.",
+    "Blockvora is a technology company building production AI, institutional blockchain, and real-world asset platforms — systems that are accessible, transparent, and connected.",
   email: "hello@blockvora.com",
   phone: "+41 58 728 90 23",
   address: "Zug, Switzerland",
+  /** Google Maps place query for HQ */
+  mapQuery: "Zug, Switzerland",
   logo: "/logo.png",
   socials: {
     github: "https://github.com/blockvora",
@@ -14,6 +18,17 @@ export const siteConfig = {
   },
 } as const;
 
+/** Embed URL — no API key required. */
+export function googleMapsEmbedUrl(query = siteConfig.mapQuery, zoom = 13) {
+  const q = encodeURIComponent(query);
+  return `https://www.google.com/maps?q=${q}&hl=en&z=${zoom}&output=embed`;
+}
+
+/** Open in Google Maps app / site. */
+export function googleMapsLink(query = siteConfig.mapQuery) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
 export type NavItem = {
   label: string;
   to: string;
@@ -21,45 +36,30 @@ export type NavItem = {
   soon?: boolean;
 };
 
-/** Renaiss-style primary product navigation. */
+/** Primary company-site navigation — marketing only. */
 export const productNav: NavItem[] = [
-  { label: "Home", to: "/", description: "Featured machines and live activity" },
-  { label: "Platforms", to: "/platforms", description: "Main project machines" },
-  { label: "Marketplace", to: "/marketplace", description: "Shipped work and listings" },
-  { label: "Lending", to: "/lending", description: "Credit rails for tokenized assets" },
-  {
-    label: "Borrowing",
-    to: "/borrowing",
-    description: "Collateralized borrowing programs",
-  },
-  {
-    label: "Leaderboard",
-    to: "/leaderboard",
-    description: "Delivery and impact rankings",
-  },
-  { label: "Profile", to: "/about", description: "Team and engineering culture" },
-  { label: "Careers", to: "/careers", description: "Open roles across engineering and product" },
-  { label: "Redemption", to: "/contact", description: "Apply, redeem, or start a build" },
+  { label: "Home", to: "/", description: "Company overview" },
+  { label: "Platforms", to: "/platforms", description: "Products we build and operate" },
+  { label: "About", to: "/about", description: "Who we are" },
+  { label: "Careers", to: "/careers", description: "Open roles" },
+  { label: "Contact", to: "/contact", description: "Work with us" },
 ];
 
-/** Kept for older references; prefer productNav. */
 export const mainNav: NavItem[] = productNav.filter((item) => item.to !== "/");
 
 export const footerNav: { title: string; items: NavItem[] }[] = [
   {
-    title: "Network",
+    title: "Product",
     items: [
       { label: "Platforms", to: "/platforms" },
-      { label: "Marketplace", to: "/marketplace" },
-      { label: "Lending", to: "/lending" },
-      { label: "Borrowing", to: "/borrowing" },
+      { label: "Solutions", to: "/solutions" },
+      { label: "Technologies", to: "/technologies" },
     ],
   },
   {
     title: "Company",
     items: [
-      { label: "Profile", to: "/about" },
-      { label: "Leaderboard", to: "/leaderboard" },
+      { label: "About", to: "/about" },
       { label: "Careers", to: "/careers" },
       { label: "Contact", to: "/contact" },
     ],

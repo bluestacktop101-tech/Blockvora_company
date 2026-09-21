@@ -1,15 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { CompanyMap } from "@/components/common/CompanyMap";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
+import { BuildWithCta } from "@/components/home/BuildWithCta";
 import { FeatureGrid } from "@/components/marketing/FeatureGrid";
 import { BulletList } from "@/components/marketing/BulletList";
-import { PageCta } from "@/components/marketing/PageCta";
 import { siteConfig } from "@/config/site";
 import { pageHead } from "@/lib/seo";
 
-const description =
-  "Blockvora is an engineering studio for enterprise AI, blockchain and tokenization — built by practitioners who ship systems that last.";
+const description = siteConfig.description;
 
 const principles = [
   {
@@ -54,58 +54,79 @@ function Page() {
     <>
       <PageHeader
         eyebrow="About"
-        title="An engineering studio for AI and blockchain"
-        description={description}
+        title="Blockvora is a technology company"
+        description={siteConfig.vision}
+        actions={
+          <>
+            <Link
+              to="/platforms"
+              className="bg-foreground text-background hover:bg-foreground/90 inline-flex min-h-10 items-center rounded-md px-4 text-sm font-medium"
+            >
+              Explore platforms
+            </Link>
+            <Link
+              to="/contact"
+              className="border-border text-foreground hover:bg-secondary inline-flex min-h-10 items-center rounded-md border px-4 text-sm font-medium"
+            >
+              Work with us
+            </Link>
+          </>
+        }
       />
-      <Section tone="dark">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+
+      <Section tone="surface">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <SectionHeading
             align="left"
-            eyebrow="Story"
-            title="We started where demos fail"
-            description="Blockvora was founded to close the gap between impressive AI and blockchain prototypes and systems that clear enterprise review. Our teams combine applied research fluency with the habits of platform engineering — because regulated buyers need both."
+            eyebrow="Positioning"
+            title="Accessible. Transparent. Connected."
+            description="We build intelligent, decentralized technology so complex systems become operable for the people who have to run them — not just impressive in a pitch deck."
           />
           <div>
-            <h2 className="font-mono text-[0.7rem] tracking-[0.2em] uppercase">What we believe</h2>
+            <h2 className="font-mono text-[0.7rem] tracking-[0.16em] uppercase">What that means</h2>
             <BulletList
               className="mt-6"
               items={[
-                "Models and chains are components — products are workflows with owners",
-                "Compliance evidence should be a byproduct of good architecture",
-                "The best interface for a complex system is often a calm one",
-                "Long-term partners beat transactional staff augmentation",
+                "Production AI with private deployment and evaluation gates",
+                "Institutional blockchain and settlement systems that clear review",
+                "Real-world asset rails with policy and custody in the critical path",
+                "Senior engineers on the work — not layered staff-aug theater",
               ]}
             />
           </div>
         </div>
       </Section>
-      <Section tone="surface">
+
+      <Section>
         <SectionHeading align="left" eyebrow="Principles" title="How we show up on engagements" />
-        <FeatureGrid items={principles} columns={3} className="mt-12" />
+        <FeatureGrid items={principles} columns={3} className="mt-10" />
       </Section>
-      <Section tone="dark">
+
+      <Section tone="surface">
         <SectionHeading
           align="left"
           eyebrow="Studio"
-          title="Based in Zug, building globally"
-          description={`${siteConfig.address}. We work with clients across Europe and North America, with remote-friendly delivery and on-site workshops when the problem demands it.`}
+          title={`Based in ${siteConfig.address}`}
+          description="We work with clients across Europe and North America, with remote-friendly delivery and on-site workshops when the problem demands it."
         />
-        <dl className="mt-12 grid gap-6 sm:grid-cols-3">
+        <dl className="mt-10 grid gap-4 sm:grid-cols-3">
           {[
             { label: "Focus", value: "AI · Blockchain · RWA" },
             { label: "Contact", value: siteConfig.email },
             { label: "Careers", value: "We're hiring builders" },
           ].map((item) => (
-            <div key={item.label} className="border-border/70 rounded-3xl border p-6">
-              <dt className="text-muted-foreground font-mono text-[0.65rem] tracking-[0.18em] uppercase">
-                {item.label}
-              </dt>
-              <dd className="mt-3 text-lg font-semibold tracking-tight">{item.value}</dd>
+            <div key={item.label} className="border-border bg-card rounded-xl border p-5">
+              <dt className="text-muted-foreground text-xs">{item.label}</dt>
+              <dd className="mt-2 text-base font-semibold tracking-tight">{item.value}</dd>
             </div>
           ))}
         </dl>
+        <div className="mt-8">
+          <CompanyMap />
+        </div>
       </Section>
-      <PageCta title="Work with Blockvora" secondary={{ label: "Open roles", to: "/careers" }} />
+
+      <BuildWithCta />
     </>
   );
 }

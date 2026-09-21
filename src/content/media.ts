@@ -1,10 +1,10 @@
 /**
- * Card covers matched to content domains (documentary photos, not AI renders).
- * AI → analytics/engineering desks
- * Agents → team workflow
- * Healthcare → clinical settings
- * Blockchain / contracts → finance + engineering code
- * RWA → property / commercial architecture
+ * Card covers — documentary company photography by domain.
+ * AI → engineering workstations
+ * Agents → team collaboration
+ * Healthcare → clinical environments
+ * Blockchain / contracts → finance + operations desks
+ * RWA → commercial architecture / property
  */
 export const caseStudyImages: Record<string, string> = {
   "rwa-marketplace": "/listings/cs-rwa-market.jpg",

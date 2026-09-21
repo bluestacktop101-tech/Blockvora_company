@@ -1,13 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
-import { Section } from "@/components/common/Section";
-import { MainProjects } from "@/components/home/MainProjects";
+import { PlatformsGrid } from "@/components/home/PlatformsGrid";
+import { BuildWithCta } from "@/components/home/BuildWithCta";
 import { mainProjects } from "@/content/projects";
 import { pageHead } from "@/lib/seo";
 
 const description =
-  "Browse Blockvora’s live delivery machines — AI, agents, healthcare, ledger, and RWA platforms.";
+  "Explore Blockvora prototype platforms across production AI, institutional blockchain, and real-world assets.";
 
 export const Route = createFileRoute("/platforms")({
   head: () => pageHead({ title: "Platforms", description, path: "/platforms" }),
@@ -19,29 +18,30 @@ function Page() {
     <>
       <PageHeader
         eyebrow="Platforms"
-        title="Main project machines"
+        title="Prototype platforms"
         description={description}
         meta={
           <>
-            <span>{mainProjects.length} live programs</span>
+            <span>{mainProjects.length} prototypes</span>
             <span className="text-border" aria-hidden="true">
               /
             </span>
-            <span>Always-on delivery pools</span>
+            <span>AI · Blockchain · RWA</span>
           </>
         }
-      />
-      <Section tone="surface" className="pt-0">
-        <MainProjects title="All platforms" description="Open a machine for the full stack and engagement path." />
-        <div className="mt-12 px-0">
+        actions={
           <Link
-            to="/marketplace"
-            className="bg-foreground text-background hover:bg-foreground/90 inline-flex min-h-10 items-center gap-2 rounded-md px-4 text-sm font-medium"
+            to="/contact"
+            className="bg-foreground text-background hover:bg-foreground/90 inline-flex min-h-10 items-center rounded-md px-4 text-sm font-medium"
           >
-            Browse marketplace <ArrowRight className="size-4" />
+            Work with us
           </Link>
-        </div>
-      </Section>
+        }
+      />
+      <div className="-mt-4">
+        <PlatformsGrid showHeader={false} />
+      </div>
+      <BuildWithCta />
     </>
   );
 }

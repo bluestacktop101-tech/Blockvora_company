@@ -1,161 +1,112 @@
-export type ProjectStatus = "live" | "sold-out" | "coming-soon";
+export type ProjectStatus = "prototype" | "live" | "coming-soon";
 
 export type MainProject = {
   slug: string;
   name: string;
-  codename: string;
-  byline: string;
+  /** Short category label shown on cards */
+  category: string;
   summary: string;
   body: string;
   status: ProjectStatus;
-  entryLabel: string;
-  entryValue: string;
-  topSignalLabel: string;
-  topSignal: string;
+  /** Primary outcome — always visible */
+  outcome: string;
   highlights: string[];
-  pool: string[];
   cta: string;
   href: "/solutions/$slug" | "/case-studies/$slug" | "/contact";
   hrefSlug?: string;
-  accent: "gold" | "cyan" | "violet" | "ember" | "mint";
-  /** Pack cover image under /public */
   image: string;
 };
 
-/** Homepage “main projects” — product machines in the Renaiss pack style. */
+/** Blockvora platforms — early prototypes, not marketplace listings. */
 export const mainProjects: MainProject[] = [
   {
     slug: "atlas-28",
-    name: "ATLAS 28",
-    codename: "Production AI entry",
-    byline: "By Blockvora",
+    name: "ATLAS",
+    category: "Production AI",
     summary:
-      "A new chase for enterprise AI starts here. ATLAS 28 is the accessible entry into Blockvora’s production LLM stack — retrieval, eval gates, and private deployment.",
-    body: "Unlike a one-off pilot, ATLAS stays live. Its architecture pool is continuously hardened for regulated clients. Every release is backed by evaluation harnesses, citation-ready answers, and operator controls. Real production AI. A clear entry point. More ways to ship.",
-    status: "live",
-    entryLabel: "Engage from",
-    entryValue: "$28k",
-    topSignalLabel: "Top outcome",
-    topSignal: "Cited answers in weeks",
-    highlights: [
-      "RAG & knowledge systems",
-      "Eval + CI gates",
-      "Private VPC serving",
-      "Operator copilots",
-    ],
-    pool: ["OpenAI", "Anthropic", "pgvector", "Azure OpenAI", "LangChain"],
-    cta: "Open ATLAS 28",
+      "Private LLM stack with retrieval, evaluation gates, and operator controls for regulated teams.",
+    body: "Prototype platform for production AI — citation-ready answers, private serving, and eval harnesses before release.",
+    status: "prototype",
+    outcome: "Cited answers under private deployment",
+    highlights: ["RAG & knowledge systems", "Eval + CI gates", "Private VPC serving"],
+    cta: "View ATLAS",
     href: "/solutions/$slug",
     hrefSlug: "ai-development",
-    accent: "gold",
-    image: "/projects/atlas-28-ai.jpg",
+    image: "/projects/atlas-28-card.jpg",
   },
   {
     slug: "atlas-48",
-    name: "ATLAS 48",
-    codename: "Agent workflows",
-    byline: "By Blockvora",
+    name: "ATLAS Agents",
+    category: "AI agents",
     summary:
-      "Ready to raise autonomy? ATLAS 48 gives teams tool-using agents with guardrails, audit trails, and human oversight baked in.",
-    body: "Always-on agent platforms for multi-step enterprise work. Vault-grade permissions, transparent tool calls, and verifiable handoffs — so agents execute work you can actually trust.",
-    status: "live",
-    entryLabel: "Engage from",
-    entryValue: "$48k",
-    topSignalLabel: "Top outcome",
-    topSignal: "Guarded multi-step runs",
-    highlights: [
-      "Tool-using agents",
-      "Policy + audit trails",
-      "Human escalation",
-      "Workflow orchestration",
-    ],
-    pool: ["TypeScript", "Python", "Queues", "OpenTelemetry", "IAM"],
-    cta: "Open ATLAS 48",
+      "Tool-using agents with guardrails, audit trails, and human escalation for multi-step work.",
+    body: "Prototype agent workflows with transparent tool calls and verifiable handoffs.",
+    status: "prototype",
+    outcome: "Guarded multi-step runs",
+    highlights: ["Tool-using agents", "Policy + audit trails", "Human escalation"],
+    cta: "View Agents",
     href: "/solutions/$slug",
     hrefSlug: "ai-agents",
-    accent: "cyan",
-    image: "/projects/atlas-48-agents.jpg",
+    image: "/projects/atlas-48-card.jpg",
   },
   {
     slug: "clinic-88",
-    name: "CLINIC 88",
-    codename: "Healthcare AI",
-    byline: "By Blockvora × Clinical partners",
+    name: "CLINIC",
+    category: "Healthcare AI",
     summary:
-      "Meet the clinical AI machine built for PHI boundaries, review workflows, and measurable care-team lift.",
-    body: "Unlike a demo chatbot, CLINIC 88 stays live inside private environments. Provenance, access control, and evaluation keep outputs safe enough for clinical operations.",
-    status: "live",
-    entryLabel: "Engage from",
-    entryValue: "$88k",
-    topSignalLabel: "Top outcome",
-    topSignal: "HIPAA-ready delivery",
-    highlights: [
-      "PHI-aware retrieval",
-      "Clinical review loops",
-      "Private deployments",
-      "Safety eval suites",
-    ],
-    pool: ["Azure", "HIPAA controls", "EHR APIs", "Python", "React"],
-    cta: "Open CLINIC 88",
+      "Clinical assist with PHI boundaries, citation rails, and physician review in the loop.",
+    body: "Prototype clinical intelligence for chart review — private environments and eval-gated releases.",
+    status: "prototype",
+    outcome: "PHI-aware clinical assist",
+    highlights: ["FHIR-aware retrieval", "Citation panels", "Review workflows"],
+    cta: "View CLINIC",
     href: "/solutions/$slug",
     hrefSlug: "healthcare-ai",
-    accent: "mint",
-    image: "/projects/clinic-88-health.jpg",
+    image: "/projects/clinic-88-card.jpg",
   },
   {
     slug: "ledger-248",
-    name: "LEDGER 248",
-    codename: "Institutional blockchain",
-    byline: "By Blockvora × Capital markets",
+    name: "LEDGER",
+    category: "Institutional blockchain",
     summary:
-      "Raise the stakes with institutional ledger work — contracts, indexing, custody coordination, and auditor-ready design.",
-    body: "Higher-value pools mean settlement systems, tokenization rails, and ops tooling that survive security review. Transparent mechanics. No hand-wavy trust.",
-    status: "live",
-    entryLabel: "Engage from",
-    entryValue: "$248k",
-    topSignalLabel: "Top outcome",
-    topSignal: "$2.4B+ tokenized",
-    highlights: [
-      "Smart contracts",
-      "Reorg-safe indexers",
-      "Custody integrations",
-      "Audit remediation",
-    ],
-    pool: ["Solidity", "Foundry", "Ethereum / L2", "Go", "AWS"],
-    cta: "Open LEDGER 248",
+      "Contracts, indexing, and custody coordination designed to clear institutional security review.",
+    body: "Prototype ledger rails for settlement systems and auditor-ready design.",
+    status: "prototype",
+    outcome: "Auditor-ready settlement design",
+    highlights: ["Smart contracts", "Indexers", "Custody integrations"],
+    cta: "View LEDGER",
     href: "/solutions/$slug",
     hrefSlug: "blockchain",
-    accent: "violet",
-    image: "/projects/ledger-248-chain.jpg",
+    image: "/projects/ledger-248-card.jpg",
   },
   {
     slug: "nova-eden",
-    name: "NOVA EDEN",
-    codename: "RWA tokenization",
-    byline: "By Blockvora",
+    name: "NOVA",
+    category: "Real-world assets",
     summary:
-      "Enter Eden for real-world asset rails — issuance, secondary markets, and compliance-led administration.",
-    body: "An Infinite RWA release: vault-secured custody coordination, verifiable ownership records, and operator control planes for funds, real estate, and private markets.",
-    status: "live",
-    entryLabel: "Engage from",
-    entryValue: "Custom",
-    topSignalLabel: "Top outcome",
-    topSignal: "T+0 DvP settlement",
-    highlights: [
-      "Issuance + policy",
-      "Secondary marketplace",
-      "Issuer control plane",
-      "Investor UX",
-    ],
-    pool: ["RWA", "Solidity", "React", "Custody APIs", "PostgreSQL"],
-    cta: "Open NOVA EDEN",
+      "Issuance, policy, and secondary-market rails for funds, property, and private markets.",
+    body: "Prototype RWA platform — custody coordination and operator control planes.",
+    status: "prototype",
+    outcome: "Policy-enforced issuance rails",
+    highlights: ["Issuance + policy", "Secondary markets", "Issuer controls"],
+    cta: "View NOVA",
     href: "/solutions/$slug",
     hrefSlug: "rwa-tokenization",
-    accent: "ember",
-    image: "/projects/nova-eden-rwa.jpg",
+    image: "/projects/nova-eden-card.jpg",
   },
 ];
 
 export function getProject(slug: string) {
   return mainProjects.find((item) => item.slug === slug);
+}
+
+export function statusLabel(status: ProjectStatus) {
+  switch (status) {
+    case "prototype":
+      return "Prototype";
+    case "live":
+      return "Live";
+    case "coming-soon":
+      return "Coming soon";
+  }
 }

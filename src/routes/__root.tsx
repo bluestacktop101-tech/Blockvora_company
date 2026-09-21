@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteLayout } from "@/components/layout/SiteLayout";
+import { siteConfig } from "@/config/site";
 
 function NotFoundComponent() {
   return (
@@ -90,11 +91,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Blockvora — Enterprise AI & Blockchain Engineering" },
+      { title: "Blockvora — AI, Blockchain & Real-World Assets" },
       {
         name: "description",
-        content:
-          "Blockvora designs and engineers enterprise-grade AI systems, blockchain networks and tokenization platforms for regulated industries.",
+        content: siteConfig.description,
       },
       { name: "author", content: "Blockvora" },
       { property: "og:site_name", content: "Blockvora" },

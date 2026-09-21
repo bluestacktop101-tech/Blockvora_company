@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Github, Linkedin, Mail, MapPin, Twitter } from "lucide-react";
+import { CompanyMap } from "@/components/common/CompanyMap";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Section } from "@/components/common/Section";
 import { Reveal } from "@/components/common/Reveal";
 import { ContactForm } from "@/components/marketing/ContactForm";
-import { siteConfig } from "@/config/site";
+import { googleMapsLink, siteConfig } from "@/config/site";
 import { pageHead } from "@/lib/seo";
 
 const description =
@@ -65,6 +66,14 @@ function Page() {
                 <div>
                   <p className="text-sm font-medium">Location</p>
                   <p className="text-muted-foreground text-sm">{siteConfig.address}</p>
+                  <a
+                    href={googleMapsLink()}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-foreground mt-1 inline-block text-sm font-medium underline-offset-4 hover:underline"
+                  >
+                    View on Google Maps
+                  </a>
                 </div>
               </li>
               <li className="flex gap-3">
@@ -115,6 +124,19 @@ function Page() {
             {...(interest ? { defaultInterest: interest } : role ? { defaultInterest: "Careers" } : {})}
             {...(role ? { defaultRole: role } : {})}
           />
+        </div>
+      </Section>
+
+      <Section tone="surface" id="location">
+        <Reveal>
+          <h2 className="text-2xl font-semibold tracking-tight">Company location</h2>
+          <p className="text-muted-foreground mt-3 max-w-2xl text-sm leading-relaxed">
+            Blockvora is based in {siteConfig.address}. Open the map for directions or share the pin
+            with your team.
+          </p>
+        </Reveal>
+        <div className="mt-8">
+          <CompanyMap />
         </div>
       </Section>
     </>

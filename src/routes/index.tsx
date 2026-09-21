@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ActivityFeed } from "@/components/home/ActivityFeed";
-import { FeaturedRail } from "@/components/home/FeaturedRail";
-import { HomeSlider } from "@/components/home/HomeSlider";
-import { MainProjects } from "@/components/home/MainProjects";
-import { TrendingGrid } from "@/components/home/TrendingGrid";
+import { BuildWithCta } from "@/components/home/BuildWithCta";
+import { CompanyHero } from "@/components/home/CompanyHero";
+import { CompanyIntro } from "@/components/home/CompanyIntro";
+import { HowWeWork } from "@/components/home/HowWeWork";
+import { OutcomesProof } from "@/components/home/OutcomesProof";
+import { PlatformsGrid } from "@/components/home/PlatformsGrid";
+import { WhatWeBuild } from "@/components/home/WhatWeBuild";
 import { siteConfig } from "@/config/site";
 
-const title = "Blockvora — Enterprise AI & RWA Delivery Network";
+const title = "Blockvora — AI, Blockchain & Real-World Assets";
 const description = siteConfig.description;
 
 export const Route = createFileRoute("/")({
@@ -19,7 +21,10 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "/" },
+      { rel: "preload", href: "/slides/slide-01-office.jpg", as: "image" },
+    ],
     scripts: [
       {
         type: "application/ld+json",
@@ -29,7 +34,7 @@ export const Route = createFileRoute("/")({
           name: siteConfig.name,
           description,
           email: siteConfig.email,
-          slogan: siteConfig.tagline,
+          slogan: siteConfig.vision,
         }),
       },
     ],
@@ -39,12 +44,14 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <div className="space-y-10 pb-6 pt-2 sm:space-y-12">
-      <HomeSlider />
-      <FeaturedRail />
-      <MainProjects />
-      <ActivityFeed />
-      <TrendingGrid />
+    <div>
+      <CompanyHero />
+      <WhatWeBuild />
+      <PlatformsGrid />
+      <HowWeWork />
+      <OutcomesProof />
+      <CompanyIntro />
+      <BuildWithCta />
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const AUTO_MS = 6000;
 const SLIDE_MS = 0.45;
 
-/** Simple left–right image slider — no glass, glow, or heavy motion. */
+/** Compact auto-playing image slider (legacy inset variant). */
 export function HomeSlider() {
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
@@ -17,14 +17,14 @@ export function HomeSlider() {
   const count = homeSlides.length;
 
   useEffect(() => {
-    if (paused || count < 2) return;
+    if (paused || reduce || count < 2) return;
 
     const advanceId = window.setTimeout(() => {
       setIndex((value) => (value + 1) % count);
     }, AUTO_MS);
 
     return () => window.clearTimeout(advanceId);
-  }, [index, paused, count]);
+  }, [index, paused, reduce, count]);
 
   if (!active) return null;
 
@@ -74,10 +74,9 @@ export function HomeSlider() {
                 transition={reduce ? { duration: 0 } : { duration: 0.2 }}
                 className="pointer-events-auto max-w-xl"
               >
-                <p className="text-xs font-medium text-white/75">{active.eyebrow}</p>
-                <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-4xl">
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-4xl">
                   {active.title}
-                </h1>
+                </h2>
                 <p className="mt-3 max-w-md text-sm leading-relaxed text-white/85 sm:text-base">
                   {active.body}
                 </p>

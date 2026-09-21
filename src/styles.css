@@ -44,10 +44,10 @@
   --color-invert: var(--invert);
   --color-invert-foreground: var(--invert-foreground);
   --color-invert-muted: var(--invert-muted);
-  --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --spacing-sidebar: 15rem;
+  --spacing-sidebar: 0rem;
 }
 
 :root {
@@ -175,12 +175,5 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
