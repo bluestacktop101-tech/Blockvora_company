@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: "Blockvora",
-  tagline: "Intelligent, decentralized technology for complex systems",
+  tagline: "We build AI & Web3 products that drive revenue",
   vision:
     "To build the next generation of intelligent, decentralized technology that makes complex systems more accessible, transparent, and connected.",
   description:
-    "Blockvora is a technology company building production AI, institutional blockchain, and real-world asset platforms — systems that are accessible, transparent, and connected.",
+    "Blockvora is an AI and Web3 company. We design, build, secure, and scale digital products — strategy, development, launch, and security from one partner.",
   email: "hello@blockvora.com",
   phone: "+41 58 728 90 23",
   address: "Zug, Switzerland",
@@ -47,29 +47,64 @@ export const productNav: NavItem[] = [
 
 export const mainNav: NavItem[] = productNav.filter((item) => item.to !== "/");
 
-export const footerNav: { title: string; items: NavItem[] }[] = [
+export const headerMenus: { label: string; items: NavItem[] }[] = [
   {
-    title: "Product",
+    label: "Consulting",
     items: [
-      { label: "Platforms", to: "/platforms" },
-      { label: "Solutions", to: "/solutions" },
-      { label: "Technologies", to: "/technologies" },
+      { label: "AI Consulting", to: "/solutions/ai-development", description: "Use cases, RAG, and production AI" },
+      { label: "IT Consulting", to: "/services", description: "Architecture, delivery, and platforms" },
     ],
   },
   {
-    title: "Company",
+    label: "Services",
     items: [
-      { label: "About", to: "/about" },
+      { label: "All Services", to: "/services" },
+      { label: "AI Solutions", to: "/solutions/ai-development" },
+      { label: "Web3 Solutions", to: "/solutions/blockchain" },
+      { label: "Security Audits", to: "/solutions/smart-contracts" },
+      { label: "MVP Development", to: "/services" },
+      { label: "Technical Leadership", to: "/about" },
+      { label: "Technical Due Diligence", to: "/case-studies" },
+      { label: "Consulting", to: "/contact" },
+    ],
+  },
+  {
+    label: "About",
+    items: [
+      { label: "Company", to: "/about" },
+      { label: "Portfolio", to: "/case-studies" },
       { label: "Careers", to: "/careers" },
-      { label: "Contact", to: "/contact" },
+    ],
+  },
+];
+
+export const headerLinks: NavItem[] = [
+  { label: "Technology", to: "/technologies" },
+  { label: "Insights", to: "/blog" },
+];
+
+export const footerNav: { title: string; items: NavItem[] }[] = [
+  {
+    title: "Main Menu",
+    items: [
+      { label: "Home", to: "/" },
+      { label: "Services", to: "/services" },
+      { label: "AI Solutions", to: "/solutions/ai-development" },
+      { label: "Web3 Solutions", to: "/solutions/blockchain" },
+      { label: "Security Audits", to: "/solutions/smart-contracts" },
+      { label: "Technology", to: "/technologies" },
+      { label: "About", to: "/about" },
+      { label: "Portfolio", to: "/case-studies" },
+      { label: "Careers", to: "/careers" },
     ],
   },
   {
     title: "Resources",
     items: [
       { label: "Blog", to: "/blog" },
-      { label: "Privacy", to: "/privacy" },
+      { label: "Contact", to: "/contact" },
       { label: "Terms", to: "/terms" },
+      { label: "Privacy", to: "/privacy" },
     ],
   },
 ];

@@ -1,14 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BuildWithCta } from "@/components/home/BuildWithCta";
-import { CompanyHero } from "@/components/home/CompanyHero";
-import { CompanyIntro } from "@/components/home/CompanyIntro";
-import { HowWeWork } from "@/components/home/HowWeWork";
-import { OutcomesProof } from "@/components/home/OutcomesProof";
-import { PlatformsGrid } from "@/components/home/PlatformsGrid";
-import { WhatWeBuild } from "@/components/home/WhatWeBuild";
+import { AgencyHome } from "@/components/home/AgencyHome";
 import { siteConfig } from "@/config/site";
 
-const title = "Blockvora — AI, Blockchain & Real-World Assets";
+const title = "Blockvora — AI & Web3 Innovation";
 const description = siteConfig.description;
 
 export const Route = createFileRoute("/")({
@@ -21,10 +15,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [
-      { rel: "canonical", href: "/" },
-      { rel: "preload", href: "/slides/slide-01-office.jpg", as: "image" },
-    ],
+    links: [{ rel: "canonical", href: "/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -43,15 +34,5 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  return (
-    <div>
-      <CompanyHero />
-      <WhatWeBuild />
-      <PlatformsGrid />
-      <HowWeWork />
-      <OutcomesProof />
-      <CompanyIntro />
-      <BuildWithCta />
-    </div>
-  );
+  return <AgencyHome />;
 }
