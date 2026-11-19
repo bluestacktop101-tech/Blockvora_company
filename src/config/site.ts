@@ -1,12 +1,33 @@
 export const siteConfig = {
   name: "Blockvora",
-  tagline: "Building the delivery network for enterprise AI & real-world assets",
+  tagline: "We build AI & Web3 products that drive revenue",
+  vision:
+    "To build the next generation of intelligent, decentralized technology that makes complex systems more accessible, transparent, and connected.",
   description:
-    "Blockvora is the product network for production AI systems, institutional blockchain, and RWA platforms — live machines, transparent delivery, measurable outcomes.",
-  email: "hello@blockvora.com",
-  phone: "+1 (415) 555-0142",
-  address: "One Market Plaza, San Francisco, CA",
+    "Blockvora is an AI and Web3 company. We design, build, secure, and scale digital products — strategy, development, launch, and security from one partner.",
+  email: "hello@blockvora.org",
+  phone: "+41 58 728 90 23",
+  address: "Zug, Switzerland",
+  /** Google Maps place query for HQ */
+  mapQuery: "Zug, Switzerland",
+  logo: "/logo.png",
+  socials: {
+    github: "https://github.com/blockvora",
+    linkedin: "https://www.linkedin.com/company/blockvora",
+    twitter: "https://x.com/blockvora",
+  },
 } as const;
+
+/** Embed URL — no API key required. */
+export function googleMapsEmbedUrl(query = siteConfig.mapQuery, zoom = 13) {
+  const q = encodeURIComponent(query);
+  return `https://www.google.com/maps?q=${q}&hl=en&z=${zoom}&output=embed`;
+}
+
+/** Open in Google Maps app / site. */
+export function googleMapsLink(query = siteConfig.mapQuery) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
 
 export type NavItem = {
   label: string;
@@ -15,55 +36,75 @@ export type NavItem = {
   soon?: boolean;
 };
 
-/** Renaiss-style primary product navigation. */
+/** Primary company-site navigation — marketing only. */
 export const productNav: NavItem[] = [
-  { label: "Home", to: "/", description: "Featured machines and live activity" },
-  { label: "Platforms", to: "/platforms", description: "Main project machines" },
-  { label: "Marketplace", to: "/marketplace", description: "Shipped work and listings" },
-  { label: "Lending", to: "/lending", description: "Credit rails for tokenized assets" },
-  {
-    label: "Borrowing",
-    to: "/borrowing",
-    description: "Collateralized borrowing programs",
-  },
-  {
-    label: "Leaderboard",
-    to: "/leaderboard",
-    description: "Delivery and impact rankings",
-  },
-  { label: "Profile", to: "/about", description: "Team and engineering culture" },
-  { label: "Careers", to: "/careers", description: "Open roles across engineering and product" },
-  { label: "Redemption", to: "/contact", description: "Apply, redeem, or start a build" },
+  { label: "Home", to: "/", description: "Company overview" },
+  { label: "Platforms", to: "/platforms", description: "Products we build and operate" },
+  { label: "About", to: "/about", description: "Who we are" },
+  { label: "Careers", to: "/careers", description: "Open roles" },
+  { label: "Contact", to: "/contact", description: "Work with us" },
 ];
 
-/** Kept for older references; prefer productNav. */
 export const mainNav: NavItem[] = productNav.filter((item) => item.to !== "/");
 
-export const footerNav: { title: string; items: NavItem[] }[] = [
+export const headerMenus: { label: string; items: NavItem[] }[] = [
   {
-    title: "Network",
+    label: "Consulting",
     items: [
-      { label: "Platforms", to: "/platforms" },
-      { label: "Marketplace", to: "/marketplace" },
-      { label: "Lending", to: "/lending" },
-      { label: "Borrowing", to: "/borrowing" },
+      { label: "AI Consulting", to: "/solutions/ai-development", description: "Use cases, RAG, and production AI" },
+      { label: "IT Consulting", to: "/services", description: "Architecture, delivery, and platforms" },
     ],
   },
   {
-    title: "Company",
+    label: "Services",
     items: [
-      { label: "Profile", to: "/about" },
-      { label: "Leaderboard", to: "/leaderboard" },
+      { label: "All Services", to: "/services" },
+      { label: "AI Solutions", to: "/solutions/ai-development" },
+      { label: "Web3 Solutions", to: "/solutions/blockchain" },
+      { label: "Security Audits", to: "/solutions/smart-contracts" },
+      { label: "MVP Development", to: "/services" },
+      { label: "Technical Leadership", to: "/about" },
+      { label: "Technical Due Diligence", to: "/case-studies" },
+      { label: "Consulting", to: "/contact" },
+    ],
+  },
+  {
+    label: "About",
+    items: [
+      { label: "Company", to: "/about" },
+      { label: "Portfolio", to: "/case-studies" },
       { label: "Careers", to: "/careers" },
-      { label: "Contact", to: "/contact" },
+    ],
+  },
+];
+
+export const headerLinks: NavItem[] = [
+  { label: "Technology", to: "/technologies" },
+  { label: "Insights", to: "/blog" },
+];
+
+export const footerNav: { title: string; items: NavItem[] }[] = [
+  {
+    title: "Main Menu",
+    items: [
+      { label: "Home", to: "/" },
+      { label: "Services", to: "/services" },
+      { label: "AI Solutions", to: "/solutions/ai-development" },
+      { label: "Web3 Solutions", to: "/solutions/blockchain" },
+      { label: "Security Audits", to: "/solutions/smart-contracts" },
+      { label: "Technology", to: "/technologies" },
+      { label: "About", to: "/about" },
+      { label: "Portfolio", to: "/case-studies" },
+      { label: "Careers", to: "/careers" },
     ],
   },
   {
     title: "Resources",
     items: [
       { label: "Blog", to: "/blog" },
-      { label: "Privacy", to: "/privacy" },
+      { label: "Contact", to: "/contact" },
       { label: "Terms", to: "/terms" },
+      { label: "Privacy", to: "/privacy" },
     ],
   },
 ];

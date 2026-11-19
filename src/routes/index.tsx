@@ -1,12 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ActivityFeed } from "@/components/home/ActivityFeed";
-import { FeaturedRail } from "@/components/home/FeaturedRail";
-import { HomeSlider } from "@/components/home/HomeSlider";
-import { MainProjects } from "@/components/home/MainProjects";
-import { TrendingGrid } from "@/components/home/TrendingGrid";
+import { AgencyHome } from "@/components/home/AgencyHome";
 import { siteConfig } from "@/config/site";
 
-const title = "Blockvora — Enterprise AI & RWA Delivery Network";
+const title = "Blockvora — AI & Web3 Innovation";
 const description = siteConfig.description;
 
 export const Route = createFileRoute("/")({
@@ -29,7 +25,7 @@ export const Route = createFileRoute("/")({
           name: siteConfig.name,
           description,
           email: siteConfig.email,
-          slogan: siteConfig.tagline,
+          slogan: siteConfig.vision,
         }),
       },
     ],
@@ -38,13 +34,5 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  return (
-    <div className="space-y-10 pb-6 pt-2 sm:space-y-12">
-      <HomeSlider />
-      <FeaturedRail />
-      <MainProjects />
-      <ActivityFeed />
-      <TrendingGrid />
-    </div>
-  );
+  return <AgencyHome />;
 }

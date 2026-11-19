@@ -9,7 +9,6 @@ import {
   Landmark,
   LayoutGrid,
   Menu,
-  Sparkles,
   Trophy,
   X,
 } from "lucide-react";
@@ -19,7 +18,7 @@ import { cn } from "@/lib/utils";
 
 const icons = {
   Home,
-  Platforms: Sparkles,
+  Platforms: LayoutGrid,
   Marketplace: LayoutGrid,
   Lending: Landmark,
   Borrowing: ArrowLeftRight,
@@ -69,7 +68,7 @@ export function AppSidebar() {
         <button
           type="button"
           aria-label="Close menu overlay"
-          className="fixed inset-0 z-40 bg-black/70 lg:hidden"
+          className="fixed inset-0 z-40 bg-foreground/30 lg:hidden"
           onClick={() => setOpen(false)}
         />
       ) : null}

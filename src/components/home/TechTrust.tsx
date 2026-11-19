@@ -31,17 +31,13 @@ export function TechTrust() {
         </Reveal>
 
         <Reveal delay={0.1} className="mt-10">
-          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/40 sm:grid-cols-3 lg:grid-cols-5">
+          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 lg:grid-cols-5">
             {technologies.map((tech) => (
               <li key={tech}>
-                <div className="group bg-background hover:bg-card relative flex h-20 items-center justify-center px-4 transition-colors duration-500 sm:h-24">
-                  <span className="text-muted-foreground group-hover:text-foreground text-base font-medium tracking-tight transition-colors duration-500 sm:text-lg">
+                <div className="bg-background hover:bg-card relative flex h-16 items-center justify-center px-4 transition-colors sm:h-20">
+                  <span className="text-muted-foreground hover:text-foreground text-sm font-medium tracking-tight sm:text-base">
                     {tech}
                   </span>
-                  <span
-                    className="pointer-events-none absolute inset-x-6 bottom-0 h-px origin-center scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
-                    style={{ backgroundImage: "var(--gradient-brand)" }}
-                  />
                 </div>
               </li>
             ))}

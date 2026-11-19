@@ -19,24 +19,41 @@ export default defineJob({
   sourceUrl: "https://rwa-jd.notion.site/Staff-Software-Engineer-37703938ce42806d862bd6d351ac1b7b",
   summary: "Set technical direction and ship high-leverage systems across products.",
   about: "We are hiring a Staff Software Engineer to drive architecture and delivery across critical systems. You will unblock teams, define standards, and still write production code. This is a senior IC role with broad technical influence.",
-  responsibilities: [
-    "Lead architecture for complex cross-team initiatives",
-    "Ship high-leverage backend and platform systems",
-    "Raise engineering quality through reviews and standards",
-    "Mentor senior engineers and improve execution",
-    "Partner with product and tech leads on roadmap tradeoffs",
-    "Reduce operational risk in production systems",
-  ],
-  requirements: [
-    "8+ years software engineering experience",
-    "Proven staff-level ownership of complex systems",
-    "Strong system design and communication skills",
-    "Deep expertise in at least one major stack (Node/Go/Rust/Java)",
-    "Track record mentoring engineers and shaping standards",
-  ],
-  niceToHave: [
-    "Web3 / fintech systems experience",
-    "Multi-product platform leadership",
-    "Cloud architecture at scale",
-  ],
+  
+responsibilities: [
+  "Lead architecture and technical direction for complex blockchain and cross-team initiatives",
+  "Design and build scalable backend, platform, and Web3 infrastructure systems",
+  "Drive integration between blockchain networks, smart contracts, and off-chain services",
+  "Lead technical implementation of high-impact engineering projects",
+  "Raise engineering quality through architecture reviews, code reviews, and technical standards",
+  "Mentor senior engineers and help improve technical execution across teams",
+  "Partner with product managers and tech leads on architecture and roadmap tradeoffs",
+  "Identify and reduce security, scalability, and operational risks in production systems",
+  "Drive improvements in system reliability, performance, and maintainability",
+],
+
+requirements: [
+  "8+ years of software engineering experience",
+  "3+ years of hands-on blockchain / Web3 engineering experience",
+  "Proven staff-level ownership of complex production systems",
+  "Strong understanding of blockchain architecture, Ethereum, and EVM-compatible networks",
+  "Experience designing and integrating smart contracts and blockchain services",
+  "Deep expertise in at least one major backend stack: Node.js/TypeScript, Go, Rust, or Java",
+  "Strong system design and distributed architecture skills",
+  "Experience building scalable APIs, data processing systems, and platform infrastructure",
+  "Understanding of blockchain security, transaction processing, and on-chain/off-chain architecture",
+  "Track record of mentoring engineers and establishing engineering standards",
+  "Excellent technical communication and cross-team collaboration skills",
+],
+
+niceToHave: [
+  "Experience with RWA tokenization, DeFi, or fintech systems",
+  "Solidity and smart contract architecture experience",
+  "Experience with Layer 2 and cross-chain systems",
+  "Multi-product platform architecture and leadership",
+  "Cloud architecture at scale (AWS / GCP)",
+  "Experience with Kubernetes, Docker, and infrastructure automation",
+  "Experience with high-throughput distributed systems",
+],
+
 });

@@ -10,6 +10,9 @@ const interests = [
   "Other",
 ] as const;
 
+const fieldClass =
+  "border-border bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-2.5 text-sm outline-none focus-visible:ring-2";
+
 export function ContactForm({
   defaultInterest,
   defaultRole,
@@ -32,8 +35,8 @@ export function ContactForm({
 
   if (status === "sent") {
     return (
-      <div className="glass rounded-3xl p-8 sm:p-10">
-        <p className="font-mono text-[0.7rem] tracking-[0.22em] uppercase text-cyan">
+      <div className="border-border bg-card rounded-xl border p-8 sm:p-10">
+        <p className="text-muted-foreground font-mono text-[0.7rem] tracking-[0.16em] uppercase">
           Message received
         </p>
         <h3 className="mt-4 text-2xl font-semibold tracking-tight">
@@ -54,10 +57,8 @@ export function ContactForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="glass space-y-5 rounded-3xl p-6 sm:p-8">
-      {defaultRole ? (
-        <input type="hidden" name="role" value={defaultRole} />
-      ) : null}
+    <form onSubmit={onSubmit} className="border-border bg-card space-y-5 rounded-xl border p-6 sm:p-8">
+      {defaultRole ? <input type="hidden" name="role" value={defaultRole} /> : null}
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Name" name="name" required autoComplete="name" />
         <Field label="Email" name="email" type="email" required autoComplete="email" />
@@ -70,7 +71,7 @@ export function ContactForm({
         <select
           id="interest"
           name="interest"
-          className="border-border bg-background/70 focus-visible:ring-ring mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus-visible:ring-2"
+          className={fieldClass}
           defaultValue={interestValue}
         >
           {interests.map((item) => (
@@ -87,22 +88,18 @@ export function ContactForm({
           name="message"
           required
           rows={5}
-          className="border-border bg-background/70 focus-visible:ring-ring mt-2 w-full resize-y rounded-2xl border px-4 py-3 text-sm outline-none focus-visible:ring-2"
+          className={`${fieldClass} resize-y`}
           placeholder={
             defaultRole
               ? `I'm applying for ${defaultRole}. Here's what I've built and why I'm interested…`
               : "Share goals, timelines and constraints…"
           }
-          defaultValue={
-            defaultRole
-              ? `I'm applying for ${defaultRole}.\n\n`
-              : undefined
-          }
+          defaultValue={defaultRole ? `I'm applying for ${defaultRole}.\n\n` : undefined}
         />
       </div>
       <button
         type="submit"
-        className="text-primary-foreground bg-[image:var(--gradient-brand)] shadow-[var(--shadow-glow)] inline-flex min-h-11 w-full items-center justify-center rounded-full px-6 text-sm font-medium transition-transform hover:scale-[1.02] sm:w-auto"
+        className="bg-foreground text-background hover:bg-foreground/90 inline-flex min-h-10 w-full items-center justify-center rounded-md px-5 text-sm font-medium sm:w-auto"
       >
         {defaultRole ? "Submit application" : "Send message"}
       </button>
@@ -134,7 +131,7 @@ function Field({
         type={type}
         required={required}
         autoComplete={autoComplete}
-        className="border-border bg-background/70 focus-visible:ring-ring mt-2 w-full rounded-2xl border px-4 py-3 text-sm outline-none focus-visible:ring-2"
+        className={fieldClass}
       />
     </div>
   );

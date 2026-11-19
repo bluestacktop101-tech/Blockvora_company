@@ -30,21 +30,14 @@ export function Process() {
         </Reveal>
       </div>
 
-      <ol className="relative mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border/70 bg-border/50 sm:grid-cols-4">
+      <ol className="relative mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
         {steps.map((step, index) => (
-          <Reveal as="li" key={step} delay={index * 0.04} className="min-h-0">
-            <div className="group bg-surface hover:bg-card relative flex h-full min-h-[8.5rem] flex-col justify-between p-5 transition-colors duration-500 sm:min-h-[10rem] sm:p-6">
-              <span className="text-muted-foreground font-mono text-[0.65rem] tracking-[0.22em]">
+          <Reveal as="li" key={step} delay={index * 0.02} className="min-h-0">
+            <div className="bg-surface hover:bg-card relative flex h-full min-h-[7.5rem] flex-col justify-between p-5 transition-colors sm:min-h-[9rem] sm:p-6">
+              <span className="text-muted-foreground font-mono text-[0.65rem] tracking-[0.16em]">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight sm:text-xl">{step}</h3>
-                <span
-                  className="mt-3 block h-px w-8 origin-left scale-x-50 transition-transform duration-500 group-hover:scale-x-100"
-                  style={{ backgroundImage: "var(--gradient-brand)" }}
-                  aria-hidden="true"
-                />
-              </div>
+              <h3 className="text-lg font-semibold tracking-tight sm:text-xl">{step}</h3>
             </div>
           </Reveal>
         ))}

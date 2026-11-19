@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteLayout } from "@/components/layout/SiteLayout";
+import { siteConfig } from "@/config/site";
 
 function NotFoundComponent() {
   return (
@@ -31,13 +32,13 @@ function NotFoundComponent() {
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
             to="/"
-            className="text-primary-foreground inline-flex min-h-11 items-center justify-center rounded-full bg-[image:var(--gradient-brand)] px-6 text-sm font-medium shadow-[var(--shadow-glow)]"
+            className="bg-foreground text-background inline-flex min-h-10 items-center justify-center rounded-md px-5 text-sm font-medium"
           >
             Go home
           </Link>
           <Link
             to="/contact"
-            className="border-border text-foreground inline-flex min-h-11 items-center justify-center rounded-full border px-6 text-sm font-medium"
+            className="border-border text-foreground inline-flex min-h-10 items-center justify-center rounded-md border px-5 text-sm font-medium"
           >
             Contact us
           </Link>
@@ -90,11 +91,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Blockvora — Enterprise AI & Blockchain Engineering" },
+      { title: "Blockvora — AI & Web3 Innovation" },
       {
         name: "description",
-        content:
-          "Blockvora designs and engineers enterprise-grade AI systems, blockchain networks and tokenization platforms for regulated industries.",
+        content: siteConfig.description,
       },
       { name: "author", content: "Blockvora" },
       { property: "og:site_name", content: "Blockvora" },
@@ -118,9 +118,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400&display=swap",
       },
+      { rel: "icon", href: "/logo.png", type: "image/png" },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "apple-touch-icon", href: "/logo.png" },
     ],
   }),
 

@@ -1,11 +1,34 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { siteConfig } from "@/config/site";
-import { CAREER_RESUMES_BUCKET, supabase } from "@/lib/supabase";
+import { CAREER_RESUMES_BUCKET, getSupabase, isSupabaseConfigured } from "@/lib/supabase";
+import { submitCareerApplication } from "@/lib/apply-functions";
 import { cn } from "@/lib/utils";
 
 const fieldClass =
   "border-border bg-background focus-visible:ring-ring mt-2 w-full rounded-md border px-3 py-2.5 text-sm outline-none focus-visible:ring-2";
+
+function cryptoWalletInstalled() {
+  if (typeof window === "undefined") return false;
+  const browser = window as Window & {
+    ethereum?: unknown;
+    solana?: unknown;
+    phantom?: { solana?: unknown };
+    coinbaseWalletExtension?: unknown;
+    okxwallet?: unknown;
+    trustwallet?: unknown;
+    backpack?: unknown;
+  };
+  return Boolean(
+    browser.ethereum ||
+      browser.solana ||
+      browser.phantom?.solana ||
+      browser.coinbaseWalletExtension ||
+      browser.okxwallet ||
+      browser.trustwallet ||
+      browser.backpack,
+  );
+}
 
 function emptyToNull(value: FormDataEntryValue | null) {
   if (typeof value !== "string") return null;
@@ -50,6 +73,13 @@ export function ApplyForm({
     }
 
     try {
+      if (!isSupabaseConfigured) {
+        throw new Error(
+          "Applications are temporarily unavailable. Please email hello@blockvora.org with your resume.",
+        );
+      }
+
+      const supabase = getSupabase();
       const safeName = resume.name.replace(/[^\w.\-]+/g, "_");
       const path = `${Date.now()}-${crypto.randomUUID()}-${safeName}`;
 
@@ -65,24 +95,22 @@ export function ApplyForm({
         throw new Error(uploadError.message || "Resume upload failed.");
       }
 
-      const { error: insertError } = await supabase.from("career_applications").insert({
-        role: emptyToNull(data.get("role")) ?? defaultRole ?? null,
-        name,
-        email,
-        resume_path: path,
-        resume_url: null,
-        linkedin: emptyToNull(data.get("linkedin")),
-        github: emptyToNull(data.get("github")),
-        phone: emptyToNull(data.get("phone")),
-        telegram: emptyToNull(data.get("telegram")),
-        work_location: workLocation,
-        cover_letter: emptyToNull(data.get("coverLetter")),
-        blockchain_project: emptyToNull(data.get("blockchainProject")),
+      await submitCareerApplication({
+        data: {
+          role: emptyToNull(data.get("role")) ?? defaultRole ?? null,
+          name,
+          email,
+          linkedin: emptyToNull(data.get("linkedin")),
+          github: emptyToNull(data.get("github")),
+          workLocation,
+          resumePath: path,
+          phone: emptyToNull(data.get("phone")),
+          telegram: emptyToNull(data.get("telegram")),
+          coverLetter: emptyToNull(data.get("coverLetter")),
+          blockchainProject: emptyToNull(data.get("blockchainProject")),
+          walletInstalled: cryptoWalletInstalled(),
+        },
       });
-
-      if (insertError) {
-        throw new Error(insertError.message || "Could not save application.");
-      }
 
       form.reset();
       setResumeName(null);

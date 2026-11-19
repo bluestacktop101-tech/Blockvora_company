@@ -16,5 +16,7 @@ export default defineConfig({
   // Inside Lovable sandboxes this remains forced to Cloudflare.
   nitro: {
     preset: "vercel",
+    // This Nitro release only knows Node 20–24. On Node 26 it writes nodejs24.x and Vercel rejects the deploy.
+    ...({ vercel: { functions: { runtime: "nodejs22.x" } } } as Record<string, unknown>),
   },
 });
