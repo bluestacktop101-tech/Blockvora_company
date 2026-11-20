@@ -1,8 +1,31 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-// Must use static `import.meta.env.VITE_*` access — Vite does not replace bracket keys.
-const url = (import.meta.env.VITE_SUPABASE_URL ?? "").trim();
-const key = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? "").trim();
+function unquote(value: string) {
+  const trimmed = value.trim();
+  if (
+    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+    (trimmed.startsWith("'") && trimmed.endsWith("'"))
+  ) {
+    return trimmed.slice(1, -1).trim();
+  }
+  return trimmed;
+}
+
+function serverEnv(name: string) {
+  if (typeof process === "undefined") return "";
+  const value = process.env[name];
+  return typeof value === "string" ? unquote(value) : "";
+}
+
+// Static `import.meta.env.VITE_*` is inlined for the browser. The server also accepts SUPABASE_* at runtime.
+const url = unquote(
+  import.meta.env.VITE_SUPABASE_URL || serverEnv("VITE_SUPABASE_URL") || serverEnv("SUPABASE_URL"),
+);
+const key = unquote(
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+    serverEnv("VITE_SUPABASE_PUBLISHABLE_KEY") ||
+    serverEnv("SUPABASE_PUBLISHABLE_KEY"),
+);
 
 export const isSupabaseConfigured = Boolean(url && key);
 
@@ -12,7 +35,7 @@ let client: SupabaseClient | null = null;
 export function getSupabase(): SupabaseClient {
   if (!isSupabaseConfigured) {
     throw new Error(
-      "Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY.",
+      "Supabase is not configured. Set SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY, then redeploy.",
     );
   }
   if (!client) {
